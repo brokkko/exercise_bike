@@ -1,0 +1,18 @@
+.scene {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.left-scene-container {
+    width: 50vw;
+    background: darkslateblue;
+    position: relative;
+}
+
+.right-scene-container {
+    width: 50vw;
+    background: dodgerblue;
+    position: relative;
+}
