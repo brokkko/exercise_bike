@@ -8,7 +8,7 @@ body {
     background: #252525;
 }
 
-.bicycle-container {
+.ex_bicycle-container {
     position: absolute;
     margin: auto;
     top: 0;
@@ -20,17 +20,17 @@ body {
     overflow: hidden;
 }
 
-.bicycle-container .wheel {
+.ex_bicycle-container .wheel {
     position: absolute;
     margin: auto;
     top: 0;
     bottom: 0;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     box-shadow: 0 10px 15px -12px rgba(0, 0, 0, 0.3);
 }
 
-.bicycle-container .wheel .tire {
+.ex_bicycle-container .wheel .tire {
     position: absolute;
     margin: auto;
     top: 0;
@@ -40,11 +40,11 @@ body {
     width: inherit;
     height: inherit;
     border-radius: 50%;
-    border: 10px solid #151515;
+    border: 40px solid #151515;
     z-index: 2;
 }
 
-.bicycle-container .wheel .rim {
+.ex_bicycle-container .wheel .rim {
     position: absolute;
     margin: auto;
     top: 0;
@@ -58,7 +58,7 @@ body {
     z-index: 1;
 }
 
-.bicycle-container .wheel .spokes {
+.ex_bicycle-container .wheel .spokes {
     position: absolute;
     margin: auto;
     top: 0;
@@ -76,13 +76,13 @@ body {
     background: rgba(200, 100, 100, 0.1);
 }
 
-.bicycle-container .wheel .spokes:nth-of-type(3) {
+.ex_bicycle-container .wheel .spokes:nth-of-type(3) {
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     border-bottom: 3px solid #5ad235;
 }
 
-.bicycle-container .wheel .hub {
+.ex_bicycle-container .wheel .hub {
     position: absolute;
     margin: auto;
     top: 0;
@@ -95,13 +95,13 @@ body {
     background: #5ad235;
 }
 
-.bicycle-container .back-wheel {
+.ex_bicycle-container .back-wheel {
     left: 0;
 }
-.bicycle-container .front-wheel {
+.ex_bicycle-container .front-wheel {
     right: 0;
 }
-.bicycle-container .gear {
+.ex_bicycle-container .gear {
     position: absolute;
     margin: auto;
     top: 0;
@@ -115,7 +115,7 @@ body {
     animation: rt 3s infinite linear;
 }
 
-.bicycle-container .gear .gear-red {
+.ex_bicycle-container .gear .gear-red {
     position: absolute;
     margin: auto;
     top: 0;
@@ -128,7 +128,7 @@ body {
     border: 3px solid #5ad235;
 }
 
-.bicycle-container .gear .pedal-tube {
+.ex_bicycle-container .gear .pedal-tube {
     position: absolute;
     margin: auto;
     top: -30px;
@@ -139,7 +139,7 @@ body {
     width: 20px;
 }
 
-.bicycle-container .gear .pedal {
+.ex_bicycle-container .gear .pedal {
     position: absolute;
     margin: auto;
     top: -50px;
@@ -153,7 +153,7 @@ body {
     z-index: 3;
 }
 
-.bicycle-container .tube {
+.ex_bicycle-container .tube {
     position: absolute;
     margin: auto;
     top: 0;
@@ -164,51 +164,51 @@ body {
     z-index: 3;
 }
 
-.bicycle-container .chain-tube {
+.ex_bicycle-container .chain-tube {
     left: calc(120px / 2);
     width: 120px;
 }
 
-.bicycle-container .seat-tube-back {
+.ex_bicycle-container .seat-tube-back {
     left: calc(120px / 2);
     transform-origin: left;
     transform: rotate(-60deg);
     width: 120px;
 }
 
-.bicycle-container .seat-tube-front {
-    left: calc(120px / 2);
+.ex_bicycle-container .seat-tube-front {
+    left: calc(70px);
     transform-origin: right;
-    transform: rotate(60deg);
-    width: 120px;
+    transform: rotate(65deg);
+    width: 100px;
 }
 
-.bicycle-container .seat-tube-post {
-    left: calc((120px / 2) - 20px);
+.ex_bicycle-container .seat-tube-post {
+    left: calc((70px) - 20px);
     transform-origin: right;
-    transform: rotate(60deg);
+    transform: rotate(65deg);
     background: #5ad235;
     z-index: 1;
     height: calc(5px - 1px);
-    width: 140px;
+    width: 120px;
 }
 
-.bicycle-container .top-tube {
+.ex_bicycle-container .top-tube {
     left: 120px;
     bottom: initial;
     top: 44px;
     width: 113px;
 }
 
-.bicycle-container .top-handlebar-tube {
+.ex_bicycle-container .top-handlebar-tube {
     right: 112px;
     bottom: initial;
     top: 25px;
-    width: 20px;
+    width: 10px;
     background: #5ad235;
 }
 
-.bicycle-container .top-handlebar-tube2 {
+.ex_bicycle-container .top-handlebar-tube2 {
     right: 90px;
     bottom: initial;
     top: 25px;
@@ -217,14 +217,14 @@ body {
     border-radius: 0;
 }
 
-.bicycle-container .down-tube {
+.ex_bicycle-container .down-tube {
     left: calc(120px + 60px);
-    width: 100px;
+    width: 120px;
     transform-origin: left;
     transform: rotate(-50deg);
 }
 
-.bicycle-container .head-tube {
+.ex_bicycle-container .head-tube {
     right: calc(120px / 2);
     transform-origin: right;
     transform: rotate(60deg);
@@ -234,11 +234,11 @@ body {
     height: calc(5px - 1px);
 }
 
-.bicycle-container .saddle {
+.ex_bicycle-container .saddle {
     position: absolute;
     margin: auto;
-    top: 20px;
-    left: 85px;
+    top: 35px;
+    left: 95px;
     width: 50px;
     height: 10px;
     border-top-left-radius: 50%;
@@ -248,7 +248,7 @@ body {
     z-index: 2;
 }
 
-.bicycle-container .handlebars {
+.ex_bicycle-container .handlebars {
     position: absolute;
     margin: auto;
     top: 25px;
@@ -335,6 +335,17 @@ body {
     width: 101px;
     transform-origin: right;
     transform: rotate(66deg);
+}
+
+.bike-body{
+    position: absolute;
+    background: url("../assets/ex_bike_body.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 140px;
+    height: 140px;
+    left: 120px;
+    top: 110px;
 }
 
 @keyframes rt {
