@@ -105,7 +105,7 @@ export default class GearTable extends Component {
                               }}
 
                               value={this.state.cells[row][cellData].value}
-                              className={this.getHighlightedStyle(this.state.cells[row][cellData].highlighted)}
+                              className={this.getHighlightedStyle(this.state.cells[row][cellData].highlighted) + " cell"}
                        />)
             }
         }
@@ -131,7 +131,7 @@ export default class GearTable extends Component {
                     </div>
                 </div>
 
-                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 1fr)`}} className="table">
+                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 2rem)`}} className="table">
                     {cells}
                 </div>
             </div>

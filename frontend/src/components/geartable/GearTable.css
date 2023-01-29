@@ -23,6 +23,29 @@
 
 }
 
+.top-panel-cell, .left-panel-cell{
+    background-color: white;
+}
+
+.top-panel-cell{
+    width: 2rem;
+    height: 2rem;
+}
+
+.left-panel-cell{
+    height: 2rem;
+    width: 2rem;
+}
+
+.cell{
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .outer .left{
     position: absolute;
     left: var(--left-margin);
