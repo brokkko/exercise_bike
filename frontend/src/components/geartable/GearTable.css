@@ -1,0 +1,61 @@
+.table, .outer{
+    --top-margin: 2rem;
+    --left-margin: 2rem;
+}
+
+.table{
+    display: grid;
+    position: relative;
+    margin: var(--top-margin) 0 0 var(--left-margin);
+
+    height: 100px;
+}
+
+.outer{
+    position: absolute;
+    top: calc(0 - var(--top-margin));
+    left: calc(0 - var(--left-margin));
+}
+
+.outer .top{
+    position: absolute;
+    top: var(--top-margin);
+
+}
+
+.top-panel-cell, .left-panel-cell{
+    background-color: white;
+}
+
+.top-panel-cell{
+    width: 2rem;
+    height: 2rem;
+}
+
+.left-panel-cell{
+    height: 2rem;
+    width: 2rem;
+}
+
+.cell{
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer .left{
+    position: absolute;
+    left: var(--left-margin);
+    display: flex;
+}
+
+.highlighted-colored{
+    background-color: #e36d18;
+}
+
+.highlighted-semi-colored{
+    background-color: rgba(227, 109, 24, 0.57);
+}
