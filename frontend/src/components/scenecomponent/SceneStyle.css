@@ -1,38 +1,44 @@
-.scene {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+.page{
+    display: grid;
+    /* grid-template-rows: auto; */
+    grid-template-areas:
+        "bc title title exc"
+        "bc bcData excData exc"
+        "bc table table exc";
     height: 100%;
-    width: 100%;
-    background: #b4b3b3;
+    align-items: center;
 }
 
-.scene-bicycle-container {
-    width: 20vw;
-    height: 20vw;
-    padding: 0;
-    margin: 0;
-    background: #b4b3b3;
-    position: relative;
-
-    display: flex;
+.title{
+    grid-area: title;
 }
 
-.bicycle-graphics {
-    width: 40vw;
-    height: 21vw;
+.bicycle-scene-container{
+
+    grid-area: bc;
+    /*display: flex;*/
+    flex-direction: column;
 }
 
-.flex-row {
-    display: flex;
-    flex-direction: row;
+.exercise-scene-container{
+    grid-area: exc;
+    /*display: flex;*/
+    flex-direction: column;
+
 }
 
-.scene-exercise-bike-container {
-    width: 20vw;
-    height: 20vw;
-    background: #b4b3b3;
-    position: relative;
+.bicycle-data{
+    grid-area: bcData;
+}
 
+.exercise-data{
+    grid-area: excData;
+}
+
+.table-container{
+    grid-area: table;
+}
+
+.graphic-display{
 
 }

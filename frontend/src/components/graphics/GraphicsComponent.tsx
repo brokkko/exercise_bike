@@ -136,7 +136,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
     render() {
         return (
             <>
-                <Line data={this.setData()} options={this.setOptions()} />
+                <Line data={this.setData()} style={{width: "100%"}} options={this.setOptions()} />
             </>
         );
     }

@@ -59,34 +59,38 @@ export default class SceneComponent extends Component {
 
     render() {
         return (
-            <>
-                <div className="scene">
-                    <div className="flex-row">
-                        <div className="scene-bicycle-container">
-                            <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
-                        </div>
-                        <div className="bicycle-graphics">
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
-                        </div>
+            <div className="page">
 
-                    </div>
-
-                    <button onClick={this.startBicycleSimulation}>
-                        start
-                    </button>
-
-                    <div className="flex-row">
-                        <div className="scene-exercise-bike-container">
-                            <ExerciseBikeComponent/>
-                        </div>
-                        <div className="bicycle-graphics">
-                            <GraphicsComponent x={[1, 2, 3]} x_label_name={"x"} y={[1, 2, 3]} y_label_name={"y"} result_label_name={"result"}/>
-                        </div>
-                    </div>
+                <div className="title">
+                   Описание
 
                 </div>
 
-            </>
+                <div className="bicycle-scene-container">
+                    <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
+                    <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                    <button onClick={this.startBicycleSimulation}> Начать </button>
+                </div>
+
+                <div className="bicycle-data">
+                    Bicycle data
+                </div>
+
+                <div className="exercise-scene-container">
+                    <ExerciseBikeComponent/>
+                    <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                </div>
+
+                <div className="exercise-data">
+                    Excercise bike data
+                </div>
+
+
+                <div className="table-container">
+                    <GearTable tableData={[[1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1],]} onChange={(x,y,n) => {}}/>
+                </div>
+
+            </div>
         );
     }
 }

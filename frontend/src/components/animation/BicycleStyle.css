@@ -9,7 +9,7 @@ body {
 }
 
 .bicycle-container {
-    position: absolute;
+    position: relative;
     margin: auto;
     top: 0;
     left: 0;

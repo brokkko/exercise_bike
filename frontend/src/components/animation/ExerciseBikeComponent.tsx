@@ -14,17 +14,11 @@ export default class ExerciseBikeComponent extends Component {
         this.state = {animationSpeed: 10};
     }
 
-    test = (e: React.FormEvent<HTMLInputElement>) => {
-        console.log(e.target)
-        this.setState({
-            "animationSpeed": e.currentTarget.value
-        })
-    }
 
     render() {
         return (
-            <>
-                <input type="number" onInput={this.test}/>
+            <div style={{position: "relative"}}>
+
 
                 <div className="ex_bicycle-container">
                     <div className="gear" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}>
@@ -43,7 +37,7 @@ export default class ExerciseBikeComponent extends Component {
                     <div className="bike-body"></div>
 
                 </div>
-            </>
+            </div>
         );
     }
 }
