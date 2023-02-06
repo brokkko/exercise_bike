@@ -1,10 +1,10 @@
 import {Component} from "react";
-import "../styles/SceneStyle.css";
-import BicycleComponent from "./animation/BicycleComponent";
-import ExerciseBikeComponent from "./animation/ExerciseBikeComponent";
-import GearTable from "./geartable/GearTable";
-import GraphicsComponent from "./graphics/GraphicsComponent";
-import PhysicsCore from "../physics/PhysicsCore";
+import "./SceneStyle.css";
+import BicycleComponent from "../animation/BicycleComponent";
+import ExerciseBikeComponent from "../animation/ExerciseBikeComponent";
+import GearTable from "../geartable/GearTable";
+import GraphicsComponent from "../graphics/GraphicsComponent";
+import PhysicsCore from "../../physics/PhysicsCore";
 
 type Props = {
 
@@ -25,6 +25,7 @@ export default class SceneComponent extends Component {
 
     constructor(props: Props) {
         super(props);
+        this.props = props;
 
         this.bicyclePhysics = new PhysicsCore();
         this.exerciseBikePhysics = new PhysicsCore();

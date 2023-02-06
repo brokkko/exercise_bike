@@ -77,7 +77,7 @@ export default class PhysicsCore{
         }, 200)
     }
 
-    public subscribe(subscriber: (W: number, V: number, F: number) => void): void {
+    public subscribe(subscriber: (W: number, V: number, F: number, t: number) => void): void {
         this.subscriber = subscriber;
     }
 

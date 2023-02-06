@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import BicycleComponent from "./components/animation/BicycleComponent";
 import ExerciseBikeComponent from "./components/animation/ExerciseBikeComponent";
-import SceneComponent from "./components/SceneComponent";
+import SceneComponent from "./components/scenecomponent/SceneComponent";
 
 function App() {
   const [count, setCount] = useState(0)

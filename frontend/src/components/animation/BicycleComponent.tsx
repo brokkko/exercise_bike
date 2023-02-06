@@ -11,7 +11,7 @@ export default class BicycleComponent extends Component {
 
     constructor(props: BicycleProps) {
         super(props);
-        console.log("BicycleComponent constructor called");
+        this.props = props;
     }
 
     componentDidMount() {
