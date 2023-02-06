@@ -1,18 +1,38 @@
 .scene {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 30px;
     height: 100%;
     width: 100%;
+    background: #b4b3b3;
 }
 
-.left-scene-container {
-    width: 50vw;
-    background: darkslateblue;
+.scene-bicycle-container {
+    width: 20vw;
+    height: 20vw;
+    padding: 0;
+    margin: 0;
+    background: #b4b3b3;
     position: relative;
+
+    display: flex;
 }
 
-.right-scene-container {
-    width: 50vw;
-    background: dodgerblue;
+.bicycle-graphics {
+    width: 40vw;
+    height: 21vw;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.scene-exercise-bike-container {
+    width: 20vw;
+    height: 20vw;
+    background: #b4b3b3;
     position: relative;
+
+
 }

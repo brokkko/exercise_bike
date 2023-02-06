@@ -339,7 +339,7 @@ body {
 
 .bike-body{
     position: absolute;
-    background: url("../assets/ex_bike_body.svg");
+    background: url("../../assets/ex_bike_body.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 140px;

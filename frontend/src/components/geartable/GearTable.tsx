@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../../styles/ExerciseBikeStyle.css";
+import "../animation/ExerciseBikeStyle.css";
 import "./GearTable.css";
 
 type Props = {

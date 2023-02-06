@@ -136,9 +136,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
     render() {
         return (
             <>
-                <div className="graphic" style={{height: "100%", width: "100%"}}>
-                    <Line data={this.setData()} options={this.setOptions()} />
-                </div>
+                <Line data={this.setData()} options={this.setOptions()} />
             </>
         );
     }

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../styles/BicycleStyle.css";
+import "./BicycleStyle.css";
 
 type BicycleProps = {
     animationSpeed: number
