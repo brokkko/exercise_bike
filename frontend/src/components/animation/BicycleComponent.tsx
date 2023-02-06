@@ -7,19 +7,17 @@ type BicycleProps = {
 
 export default class BicycleComponent extends Component {
 
-    state: BicycleProps;
+    props: BicycleProps;
 
-    constructor(props: BicycleProps, context: any) {
-        super(props, context);
-        this.state = {animationSpeed: 10};
+    constructor(props: BicycleProps) {
+        super(props);
+        console.log("BicycleComponent constructor called");
     }
 
-    test = (e: React.FormEvent<HTMLInputElement>) => {
-        console.log(e.target)
-        this.setState({
-            "animationSpeed": e.currentTarget.value
-        })
+    componentDidMount() {
+
     }
+
 
     render() {
         return (
@@ -30,16 +28,14 @@ export default class BicycleComponent extends Component {
                 {/*    /!*<div className="ground ground3"></div>*!/*/}
                 {/*</div>*/}
 
-                <input type="number" onInput={this.test}/>
-
                 <div className="bicycle-container">
                     {/*Back-wheel Section Start*/}
                     <div className="wheel back-wheel">
                         <div className="tire"></div>
                         <div className="rim"></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
                         <div className="hub"></div>
                     </div>
 
@@ -47,13 +43,13 @@ export default class BicycleComponent extends Component {
                     <div className="wheel front-wheel">
                         <div className="tire"></div>
                         <div className="rim"></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
-                        <div className="spokes" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
+                        <div className="spokes" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}></div>
                         <div className="hub"></div>
                     </div>
 
-                    <div className="gear" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}>
+                    <div className="gear" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}>
                         <div className="gear-red"></div>
                         <div className="tube pedal-tube"></div>
                         <div className="pedal"></div>

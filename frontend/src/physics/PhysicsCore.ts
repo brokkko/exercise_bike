@@ -8,7 +8,7 @@ export default class PhysicsCore{
     private selectedNiIndex: number;
     private t: number;
     private u: number;
-    private subscriber: (W: number, V: number, F: number) => void;
+    private subscriber: (W: number, V: number, F: number, t: number) => void;
 
     private intervalId: ReturnType<typeof setInterval> | undefined;
 
@@ -21,7 +21,7 @@ export default class PhysicsCore{
             w: w1
         };
 
-        this.subscriber = (v1,v2,v3) => {};
+        this.subscriber = (v1,v2,v3,v4) => {};
         this.t = 0;
         this.u = this.calculateU()
         this.selectedNi = this.inputModel.ni[0];
@@ -46,13 +46,13 @@ export default class PhysicsCore{
     }
 
     private step(): void {
-        this.t += 0.01;
+        this.t += 0.02;
         this.update();
     }
 
     public run(): void {
 
-        let tLimit = 1.7;
+        let tLimit = 1.5;
         let niMapping = this.makeArr(0, tLimit, this.inputModel.ni.length);
         niMapping = niMapping.reverse();
 
@@ -67,13 +67,14 @@ export default class PhysicsCore{
 
             if (this.t > tLimit){
                   this.stop();
+                  return;
             }
             this.step();
             if (this.subscriber){
-                this.subscriber(this.getW(), this.getV(), this.getF())
+                this.subscriber(this.getW(), this.getV(), this.getF(), this.getT())
             }
 
-        }, 300)
+        }, 200)
     }
 
     public subscribe(subscriber: (W: number, V: number, F: number) => void): void {
@@ -100,6 +101,10 @@ export default class PhysicsCore{
 
     public getF(): number {
         return this.inputModel.kd * this.selectedNi * this.selectedNi * this.u;
+    }
+
+    public getT(): number {
+        return this.t;
     }
 
 

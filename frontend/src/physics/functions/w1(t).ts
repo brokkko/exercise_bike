@@ -1,5 +1,5 @@
 export default function w1(t: number): number {
-    return f(t-0.3) - 0.7
+    return f(t+0.2) - 0.3
 }
 
 function f(t: number): number {
