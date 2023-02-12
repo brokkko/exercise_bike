@@ -76,6 +76,9 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         padding: 20
                     },
                     ticks: {
+                        stepSize: 0.1,
+                        min: 0,
+                        max: 10.5,
                         font: {
                             size: 16,
                             weight: "400"

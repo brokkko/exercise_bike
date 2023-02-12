@@ -112,7 +112,7 @@ export default class GearTable extends Component {
 
         let topPanel = [];
         for (let cell in this.state.cells){
-            topPanel.push(<div className="top-panel-cell">{+cell + 1}</div>)
+            topPanel.push(<div className={"top-panel-cell"}>{+cell + 1}</div>)
         }
 
         let leftPanel = [];

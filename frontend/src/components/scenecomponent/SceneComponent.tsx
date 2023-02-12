@@ -64,12 +64,15 @@ export default class SceneComponent extends Component {
                 <div className="title">
                    Описание
 
+                    <button onClick={this.startBicycleSimulation}> Начать </button>
                 </div>
 
                 <div className="bicycle-scene-container">
                     <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
-                    <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
-                    <button onClick={this.startBicycleSimulation}> Начать </button>
+                    <div style={{width: "100%", height: "24rem"}}>
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                    </div>
+
                 </div>
 
                 <div className="bicycle-data">

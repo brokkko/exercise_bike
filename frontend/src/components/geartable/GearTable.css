@@ -46,6 +46,10 @@
     align-items: center;
 }
 
+.cell:focus{
+    outline: none;
+}
+
 .outer .left{
     position: absolute;
     left: var(--left-margin);
