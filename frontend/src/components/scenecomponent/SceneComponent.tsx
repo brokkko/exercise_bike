@@ -13,6 +13,7 @@ type Props = {
 type State = {
     Tlist: number[];
     bicycleWlist: number[];
+    bicycleFlist: number[];
 }
 
 export default class SceneComponent extends Component {
@@ -32,7 +33,8 @@ export default class SceneComponent extends Component {
 
         this.state = {
             Tlist: [],
-            bicycleWlist: []
+            bicycleWlist: [],
+            bicycleFlist: []
         }
 
     }
@@ -44,22 +46,22 @@ export default class SceneComponent extends Component {
             //round t and W to 2 digits after comma
             t = Math.round(t * 100) / 100;
             W = Math.round(W * 100) / 100;
-
+            F = Math.round(F * 100) / 100;
 
             this.setState({
                 Tlist: [...this.state.Tlist, t],
-                bicycleWlist: [...this.state.bicycleWlist, W]
+                bicycleWlist: [...this.state.bicycleWlist, W],
+                bicycleFlist: [...this.state.bicycleFlist, F]
             })
         }
 
         this.bicyclePhysics.subscribe(subscriber);
         this.bicyclePhysics.run();
-
     }
 
     render() {
         return (
-            <div className="page">
+            <div className="page" style={{overflow: "hidden"}}>
 
                 <div className="title">
                    Описание
@@ -68,8 +70,11 @@ export default class SceneComponent extends Component {
                 </div>
 
                 <div className="bicycle-scene-container">
+                    <div style={{width: "100%", height: "20rem"}}>
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist} y_label_name={"F, сила"} result_label_name={""}/>
+                    </div>
                     <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
-                    <div style={{width: "100%", height: "24rem"}}>
+                    <div style={{width: "100%", height: "20rem"}}>
                         <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
                     </div>
 

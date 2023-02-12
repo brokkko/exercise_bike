@@ -112,12 +112,21 @@ export default class GearTable extends Component {
 
         let topPanel = [];
         for (let cell in this.state.cells){
-            topPanel.push(<div className={"top-panel-cell"}>{+cell + 1}</div>)
+            topPanel.push(<div className="top-panel-cell">{+cell + 1}</div>)
         }
 
         let leftPanel = [];
         for (let cell in this.state.cells[0]){
             leftPanel.push(<div className="left-panel-cell">{+cell + 1}</div>)
+        }
+
+        for (let x in this.state.cells){
+            for (let y in this.state.cells[x]){
+                if (this.state.cells[x][y].highlighted == HighlightType.COLORED){
+                    leftPanel[y] = <div className="left-panel-cell highlighted-colored">{+y + 1}</div>
+                    topPanel[x] = <div className="top-panel-cell highlighted-colored">{+x + 1}</div>
+                }
+            }
         }
 
         return(
