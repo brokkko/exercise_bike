@@ -12,6 +12,7 @@ import {
     ScriptableContext
 } from "chart.js";
 import {Component} from "react";
+import Plot from 'react-plotly.js';
 
 ChartJS.register(
     CategoryScale,
@@ -138,9 +139,43 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
 
     render() {
         return (
-            <>
-                <Line data={this.setData()} style={{width: "100%"}} options={this.setOptions()} />
-            </>
+            // <>
+            //     <Line data={this.setData()} style={{width: "100%"}} options={this.setOptions()} />
+            // </>
+            <Plot
+                data={[
+                    {
+                        x: this.props.x,
+                        y: this.props.y,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        marker: {color: "rgb(61,29,73)"},
+                    },
+                ]}
+                layout={{
+                    xaxis: {
+                        automargin: true,
+                        tickangle: 90,
+                        title: {
+                            text: this.props.x_label_name,
+                            standoff: 40
+                        },
+                        range: [0, 1.5]
+                    },
+                    yaxis: {
+                        automargin: true,
+                        tickangle: 90,
+                        title: {
+                            text: this.props.y_label_name,
+                            standoff: 40
+                        },
+                        range: [0, 1.5]
+                    },
+                    width: 520,
+                    height: 410,
+                    title: this.props.result_label_name
+                } }
+            />
         );
     }
 }
