@@ -31,11 +31,22 @@
 }
 
 .bicycle-data{
+    background-color: #e36d18;
     grid-area: bcData;
+
+    border-radius: 0 2rem 2rem 0;
+    width: 10rem;
+    height: 3rem;
+
 }
 
 .exercise-data{
+    background-color: #e36d18;
     grid-area: excData;
+
+    border-radius: 2rem 0 0 2rem;
+    width: 10rem;
+    height: 3rem;
 }
 
 .table-container{
@@ -47,4 +58,8 @@
 
 .graphic-display{
 
+}
+
+.top-graph{
+    transform: translateY(-6rem);
 }

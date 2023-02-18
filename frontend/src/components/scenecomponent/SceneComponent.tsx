@@ -70,7 +70,7 @@ export default class SceneComponent extends Component {
                 </div>
 
                 <div className="bicycle-scene-container">
-                    <div style={{width: "100%", height: "20rem"}}>
+                    <div className="top-graph" style={{width: "100%", height: "20rem"}}>
                         <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist} y_label_name={"F, сила"} result_label_name={""}/>
                     </div>
                     <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
@@ -85,8 +85,13 @@ export default class SceneComponent extends Component {
                 </div>
 
                 <div className="exercise-scene-container">
+                    <div className="top-graph" style={{width: "100%", height: "20rem"}}>
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist} y_label_name={"F, сила"} result_label_name={""}/>
+                    </div>
                     <ExerciseBikeComponent/>
-                    <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                    <div style={{width: "100%", height: "20rem"}}>
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                    </div>
                 </div>
 
                 <div className="exercise-data">
