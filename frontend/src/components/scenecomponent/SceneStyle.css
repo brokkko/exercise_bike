@@ -43,6 +43,7 @@
 .exercise-data{
     background-color: #e36d18;
     grid-area: excData;
+    margin-left: auto;
 
     border-radius: 2rem 0 0 2rem;
     width: 10rem;
