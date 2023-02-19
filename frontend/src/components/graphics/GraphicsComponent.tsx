@@ -1,147 +1,29 @@
-import { Line } from "react-chartjs-2";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler,
-    ScriptableContext
-} from "chart.js";
 import {Component} from "react";
 import Plot from 'react-plotly.js';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-);
 
 type GraphicsProps = {
     x: Array<number>;
     x_label_name: string,
-    y: Array<number>;
+    y: Array<number>,
     y_label_name: string,
-    result_label_name: string
+    result_label_name: string,
+    min_x?: number,
+    max_x?: number,
+    min_y?: number,
+    max_y?: number
 }
 
 export default class GraphicsComponent extends Component<GraphicsProps> {
 
+    props: GraphicsProps;
+
     constructor(props: GraphicsProps) {
         super(props);
-
-    }
-
-    setData = () => {
-        return {
-            labels: this.props.x,
-            datasets: [
-                {
-                    label: this.props.result_label_name,
-                    data: this.props.y,
-                    backgroundColor: (context: ScriptableContext<"line">) => {
-                        const ctx = context.chart.ctx;
-                        const gradient = ctx.createLinearGradient(0, 0, 0, 500);
-                        gradient.addColorStop(0, "rgba(50,243,250,0)");
-                        gradient.addColorStop(1, "rgba(102,139,255,0)");
-                        return gradient;
-                    },
-                    borderColor: "rgb(167,121,185)"
-                }
-            ]
-        };
-    };
-
-    setOptions = () => {
-        return {
-            maintainAspectRatio: true,
-            responsive: true,
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: this.props.x_label_name,
-                        color: "rgb(61,29,73)",
-                        font: {
-                            size: 24,
-                            weight: "600"
-                        },
-                        padding: 20
-                    },
-                    ticks: {
-                        stepSize: 0.1,
-                        min: 0,
-                        max: 10.5,
-                        font: {
-                            size: 16,
-                            weight: "400"
-                        },
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: this.props.y_label_name,
-                        color: "rgb(61,29,73)",
-                        font: {
-                            size: 24,
-                            weight: "600"
-                        },
-                        padding: 20
-                    },
-                    ticks: {
-                        font: {
-                            size: 16,
-                            weight: "400"
-                        },
-                    }
-                }
-
-            },
-            elements: {
-                line: {
-                    tension: 0.35
-                },
-                point: {
-                    radius: 0
-                }
-
-            },
-            plugins: {
-                filler: {
-                    propagate: false
-                },
-                title: {
-                    display: true,
-                    text: this.props.result_label_name,
-                    color: "rgb(61,29,73)",
-                    font: {
-                        size: 24,
-                        weight: "600"
-                    },
-                    padding: 20
-                },
-                legend: {
-                    display: false
-                },
-
-            },
-        };
+        this.props = props;
     }
 
     render() {
         return (
-            // <>
-            //     <Line data={this.setData()} style={{width: "100%"}} options={this.setOptions()} />
-            // </>
             <Plot
                 data={[
                     {
@@ -160,7 +42,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                             text: this.props.x_label_name,
                             standoff: 40
                         },
-                        range: [0, 1.5]
+                        range: [this.props.min_x || 0, this.props.max_x]
                     },
                     yaxis: {
                         automargin: true,
@@ -169,7 +51,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                             text: this.props.y_label_name,
                             standoff: 40
                         },
-                        range: [0, 1.5]
+                        range: [this.props.min_y || 0, this.props.max_y]
                     },
                     width: 520,
                     height: 410,

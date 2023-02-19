@@ -7,7 +7,7 @@ type Props = {
     onChange: (x: number, y: number, newValue: number) => void
 }
 
-enum HighlightType{
+enum HighlightType {
     NONE,
     COLORED,
     SEMI_COLORED
@@ -34,6 +34,14 @@ export default class GearTable extends Component {
         super(props);
         this.props = props;
 
+        this.state = {
+            cells: [[]]
+        }
+
+    }
+
+    componentDidMount() {
+
         let cells: CellData[][] = []
 
         for (let x in this.props.tableData) {
@@ -43,14 +51,15 @@ export default class GearTable extends Component {
             }
         }
 
-        this.state = {
+        this.setState({
             cells: cells
-        }
+        })
+
     }
 
-    forall = (apply : (cell: CellData) => void) => {
-        for (let x in this.state.cells){
-            for (let y in this.state.cells[x]){
+    forall = (apply: (cell: CellData) => void) => {
+        for (let x in this.state.cells) {
+            for (let y in this.state.cells[x]) {
                 apply(this.state.cells[x][y])
             }
         }
@@ -59,15 +68,15 @@ export default class GearTable extends Component {
     highlightCell = (x: number, y: number) => {
 
         this.forall((cell) => {
-          cell.highlighted = HighlightType.NONE
+            cell.highlighted = HighlightType.NONE
         })
 
         let cells = this.state.cells;
 
-        for (let x_i in cells){
+        for (let x_i in cells) {
             cells[x_i][y].highlighted = HighlightType.SEMI_COLORED
         }
-        for (let y_i in cells[x]){
+        for (let y_i in cells[x]) {
             cells[x][y_i].highlighted = HighlightType.SEMI_COLORED
         }
 
@@ -79,10 +88,10 @@ export default class GearTable extends Component {
     }
 
     private getHighlightedStyle(highlighted: HighlightType) {
-        if (highlighted === HighlightType.COLORED){
+        if (highlighted === HighlightType.COLORED) {
             return "highlighted-colored"
         }
-        if (highlighted === HighlightType.SEMI_COLORED){
+        if (highlighted === HighlightType.SEMI_COLORED) {
             return "highlighted-semi-colored"
         }
         return ""
@@ -92,44 +101,56 @@ export default class GearTable extends Component {
 
         let cells = [];
 
-        for (let row in this.state.cells){
-            for (let cellData in this.state.cells[row]){
+        for (let row in this.state.cells) {
+            for (let cellData in this.state.cells[row]) {
 
-                   cells.push(
-                       <input
-                              onChange={(e) => {
-                                  this.props.onChange(+row, +cellData, +e.target.value)
-                              }}
-                              onFocus={(e) => {
-                                    this.highlightCell(+row, +cellData)
-                              }}
+                cells.push(
+                    <input
+                        onChange={(e) => {
+                            let tableData = this.state.cells
+                            tableData[row][cellData].value = +e.target.value
+                            this.setState({
+                                cells: tableData
+                            })
 
-                              value={this.state.cells[row][cellData].value}
-                              className={this.getHighlightedStyle(this.state.cells[row][cellData].highlighted) + " cell"}
-                       />)
+                            let array2 = this.state.cells.map((row) => {
+                                return row.map((cell) => {
+                                    return cell.value
+                                })
+                            })
+
+                            this.props.onChange(+row, +cellData, +e.target.value)
+                        }}
+                        onFocus={(e) => {
+                            this.highlightCell(+row, +cellData)
+                        }}
+
+                        value={this.state.cells[row][cellData].value}
+                        className={this.getHighlightedStyle(this.state.cells[row][cellData].highlighted) + " cell"}
+                    />)
             }
         }
 
         let topPanel = [];
-        for (let cell in this.state.cells){
+        for (let cell in this.state.cells) {
             topPanel.push(<div className="top-panel-cell">{+cell + 1}</div>)
         }
 
         let leftPanel = [];
-        for (let cell in this.state.cells[0]){
+        for (let cell in this.state.cells[0]) {
             leftPanel.push(<div className="left-panel-cell">{+cell + 1}</div>)
         }
 
-        for (let x in this.state.cells){
-            for (let y in this.state.cells[x]){
-                if (this.state.cells[x][y].highlighted == HighlightType.COLORED){
+        for (let x in this.state.cells) {
+            for (let y in this.state.cells[x]) {
+                if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
                     leftPanel[y] = <div className="left-panel-cell highlighted-colored">{+y + 1}</div>
                     topPanel[x] = <div className="top-panel-cell highlighted-colored">{+x + 1}</div>
                 }
             }
         }
 
-        return(
+        return (
             <div>
                 <div className="outer">
                     <div className="top">

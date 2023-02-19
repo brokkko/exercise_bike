@@ -89,7 +89,11 @@ export default class PhysicsCore{
         this.update();
     }
 
-    //----------------- Getters -----------------//
+    //----------------- getters and setters -----------------//
+
+    public getNi(): number[] {
+        return this.inputModel.ni;
+    }
 
     public getW(): number {
         return this.inputModel.w(this.t);

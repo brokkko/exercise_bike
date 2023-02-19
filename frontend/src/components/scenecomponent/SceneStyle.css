@@ -8,6 +8,7 @@
         "bc table table exc";
     height: 100%;
     align-items: center;
+    max-font-size: 24px;
 }
 
 .title{
