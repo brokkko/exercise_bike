@@ -104,13 +104,9 @@ export default class SceneComponent extends Component {
         this.bicyclePhysics.run();
     }
 
-    tableChange = (x: number, y: number, newValue: number) => {
-
-        let tableData = this.state.tableData
-        tableData[x][y] = newValue
-
+    tableChange = (arr: number[][]) => {
         this.setState({
-            tableData: tableData
+            tableData: arr
         })
     }
 

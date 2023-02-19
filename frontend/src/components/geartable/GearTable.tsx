@@ -4,7 +4,7 @@ import "./GearTable.css";
 
 type Props = {
     tableData: number[][]
-    onChange: (x: number, y: number, newValue: number) => void
+    onChange: (arr: number[][]) => void
 }
 
 enum HighlightType {
@@ -55,6 +55,15 @@ export default class GearTable extends Component {
             cells: cells
         })
 
+    }
+
+    private get2dArray = () => {
+        let array2 = this.state.cells.map((row) => {
+            return row.map((cell) => {
+                return cell.value
+            })
+        })
+        return array2;
     }
 
     forall = (apply: (cell: CellData) => void) => {
@@ -113,17 +122,22 @@ export default class GearTable extends Component {
                                 cells: tableData
                             })
 
-                            let array2 = this.state.cells.map((row) => {
-                                return row.map((cell) => {
-                                    return cell.value
-                                })
-                            })
-
-                            this.props.onChange(+row, +cellData, +e.target.value)
                         }}
                         onFocus={(e) => {
                             this.highlightCell(+row, +cellData)
                         }}
+
+                        onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    this.props.onChange(this.get2dArray())
+                                }
+                            }
+                        }
+
+                        onBlur={(e) => {
+                                this.props.onChange(this.get2dArray())
+                            }
+                        }
 
                         value={this.state.cells[row][cellData].value}
                         className={this.getHighlightedStyle(this.state.cells[row][cellData].highlighted) + " cell"}
@@ -168,4 +182,5 @@ export default class GearTable extends Component {
 
         )
     }
+
 }
