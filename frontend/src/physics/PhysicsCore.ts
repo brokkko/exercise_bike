@@ -13,11 +13,11 @@ export default class PhysicsCore{
     private intervalId: ReturnType<typeof setInterval> | undefined;
 
 
-    constructor() {
+    constructor(gears: number[]) {
         this.inputModel = {
             kd: 1,
             l: 1,
-            ni: [0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.05, 1.1, 1.15, 1.2, 1.3, 1.35, 1.4, 1.5], // gears
+            ni: gears, // gears
             w: w1
         };
 
@@ -90,6 +90,12 @@ export default class PhysicsCore{
     }
 
     //----------------- getters and setters -----------------//
+
+    public setNi(ni: number[]): void {
+        this.inputModel.ni = ni;
+        this.selectedNi = this.inputModel.ni[0];
+        this.selectedNiIndex = 0;
+    }
 
     public getNi(): number[] {
         return this.inputModel.ni;

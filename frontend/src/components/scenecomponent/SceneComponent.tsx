@@ -13,8 +13,9 @@ type Props = {
 
 type State = {
     Tlist: number[];
-    bicycleWlist: number[];
+    wList: number[];
     bicycleFlist: number[];
+    exerciseFlist: number[];
 
     tableData: number[][];
 }
@@ -31,13 +32,16 @@ export default class SceneComponent extends Component {
         super(props);
         this.props = props;
 
-        this.bicyclePhysics = new PhysicsCore();
-        this.exerciseBikePhysics = new PhysicsCore();
+        let gears = [3.4, 3.14,  2.75, 2.83, 2.8, 2.42, 2.125, 1.88, 1.61, 1.57, 1.41, 1.21, 1.06, 1.0, 0.94, 0.80,  0.75, 0.68].reverse()
+
+        this.bicyclePhysics = new PhysicsCore(gears);
+        this.exerciseBikePhysics = new PhysicsCore(gears);
 
         this.state = {
             Tlist: [],
-            bicycleWlist: [],
+            wList: [],
             bicycleFlist: [],
+            exerciseFlist: [],
             tableData: [[]]
         }
     }
@@ -84,6 +88,11 @@ export default class SceneComponent extends Component {
         }
     }
 
+    startSimulation = () => {
+        this.startBicycleSimulation();
+        this.startExerciseSimulation();
+    }
+
     startBicycleSimulation = () => {
 
         const subscriber = (W: number, V: number, F: number, t: number) => {
@@ -95,8 +104,9 @@ export default class SceneComponent extends Component {
 
             this.setState({
                 Tlist: [...this.state.Tlist, t],
-                bicycleWlist: [...this.state.bicycleWlist, W],
-                bicycleFlist: [...this.state.bicycleFlist, F]
+                wList: [...this.state.wList, W],
+                bicycleFlist: [...this.state.bicycleFlist, F],
+
             })
         }
 
@@ -104,11 +114,39 @@ export default class SceneComponent extends Component {
         this.bicyclePhysics.run();
     }
 
+    startExerciseSimulation = () => {
+        const subscriber = (W: number, V: number, F: number, t: number) => {
+
+                t = Math.round(t * 100) / 100;
+                W = Math.round(W * 100) / 100;
+                F = Math.round(F * 100) / 100;
+
+                this.setState({
+                    exerciseFlist: [...this.state.exerciseFlist, F]
+                })
+        }
+        this.exerciseBikePhysics.subscribe(subscriber);
+        this.exerciseBikePhysics.run();
+    }
+
     tableChange = (arr: number[][]) => {
         this.setState({
             tableData: arr
         })
+
+        this.updateExerciseBikeGears(arr)
     }
+
+    updateExerciseBikeGears = (arr: number[][]) => {
+        let gears: number[] = []
+        arr.forEach((row) => {
+            row.forEach((value) => {
+                gears.push(this.bicyclePhysics.getNi()[value - 1])
+            })
+        })
+
+        this.exerciseBikePhysics.setNi(gears)
+    };
 
     render() {
 
@@ -124,7 +162,7 @@ export default class SceneComponent extends Component {
 
                 <div className="title">
                    Описание
-                    <button onClick={this.startBicycleSimulation}> Начать </button>
+                    <button onClick={this.startSimulation}> Начать </button>
                 </div>
 
                 <div className="bicycle-scene-container">
@@ -132,16 +170,15 @@ export default class SceneComponent extends Component {
                         <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist}
                                            y_label_name={"F, сила"} result_label_name={""}
                                            max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
-                                               this.state.bicycleFlist[this.state.bicycleFlist.length - 1] : 10}
+                                               this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
                                            max_x={1.5}/>
                     </div>
-                    <BicycleComponent animationSpeed={this.state.bicycleWlist[this.state.bicycleWlist.length - 1]}/>
+                    <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
                     <div style={{width: "100%", height: "20rem"}}>
                         <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"}
-                                           y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}
+                                           y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}
                                            max_y={1.5} max_x={1.5}/>
                     </div>
-
                 </div>
 
                 <div className="bicycle-data">
@@ -150,11 +187,15 @@ export default class SceneComponent extends Component {
 
                 <div className="exercise-scene-container">
                     <div className="top-graph" style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist} y_label_name={"F, сила"} result_label_name={""} />
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.exerciseFlist}
+                                           y_label_name={"F, сила"} result_label_name={""}
+                                           max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+                                               this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                           max_x={1.5}/>
                     </div>
                     <ExerciseBikeComponent/>
                     <div style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleWlist} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}/>
                     </div>
                 </div>
 
@@ -169,4 +210,5 @@ export default class SceneComponent extends Component {
             </div>
         );
     }
+
 }
