@@ -10,7 +10,8 @@ type GraphicsProps = {
     min_x?: number,
     max_x?: number,
     min_y?: number,
-    max_y?: number
+    max_y?: number,
+    color?: string
 }
 
 export default class GraphicsComponent extends Component<GraphicsProps> {
@@ -31,31 +32,46 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         y: this.props.y,
                         type: 'scatter',
                         mode: 'lines+markers',
-                        marker: {color: "rgb(61,29,73)"},
+                        marker: {color: this.props.color},
+                        textfont: {
+                            size: 20,
+                            color: "#E6E6E6"
+                        }
                     },
                 ]}
                 layout={{
                     xaxis: {
-                        automargin: true,
-                        tickangle: 90,
-                        title: {
-                            text: this.props.x_label_name,
-                            standoff: 40
+                        automargin: false,
+                        tickangle: 0,
+                        title: this.props.x_label_name,
+                        titlefont: {
+                            family: 'Rubik, sans serif',
+                            size: 28,
+                            color: this.props.color
                         },
-                        range: [this.props.min_x || 0, this.props.max_x]
+                        range: [this.props.min_x || 0, this.props.max_x],
+                        color: "#E6E6E6",
+
                     },
                     yaxis: {
-                        automargin: true,
-                        tickangle: 90,
-                        title: {
-                            text: this.props.y_label_name,
-                            standoff: 40
+                        automargin: false,
+                        title: this.props.y_label_name,
+                        titlefont: {
+                            family: 'Rubik, sans serif',
+                            size: 28,
+                            color: this.props.color
                         },
-                        range: [this.props.min_y || 0, this.props.max_y]
+                        range: [this.props.min_y || 0, this.props.max_y],
+                        color: "#E6E6E6"
                     },
-                    width: 520,
-                    height: 410,
-                    title: this.props.result_label_name
+                    width: 780,
+                    height: 500,
+                    font: {
+                        size: 20
+                    },
+                    plot_bgcolor:"#666666",
+                    paper_bgcolor:"#666666",
+
                 } }
             />
         );

@@ -17,7 +17,7 @@ export default class ExerciseBikeComponent extends Component {
 
     render() {
         return (
-            <div style={{position: "relative"}}>
+            <div >
 
 
                 <div className="ex_bicycle-container">

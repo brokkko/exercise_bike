@@ -6,6 +6,7 @@ import GearTable from "../geartable/GearTable";
 import GraphicsComponent from "../graphics/GraphicsComponent";
 import PhysicsCore from "../../physics/PhysicsCore";
 import {Level} from "../../Level";
+import SpeedometerComponent from "../speedometr/SpeedometerComponent";
 
 type Props = {
     level: Level
@@ -27,6 +28,10 @@ export default class SceneComponent extends Component {
 
     bicyclePhysics: PhysicsCore;
     exerciseBikePhysics: PhysicsCore;
+    graphicsBackground: string;
+    yellowColor: string;
+    cyanColor: string;
+    greenColor: string;
 
     constructor(props: Props) {
         super(props);
@@ -44,6 +49,12 @@ export default class SceneComponent extends Component {
             exerciseFlist: [],
             tableData: [[]]
         }
+
+        this.graphicsBackground = "#666666";
+        this.yellowColor = "#F7F743";
+        this.cyanColor = "#66FFCC";
+        this.greenColor = "#8EED00";
+
     }
 
     componentDidMount = () => {
@@ -158,56 +169,146 @@ export default class SceneComponent extends Component {
         })
 
         return (
-            <div className="page" style={{overflow: "hidden"}}>
-
-                <div className="title">
-                   Описание
-                    <button onClick={this.startSimulation}> Начать </button>
-                </div>
-
-                <div className="bicycle-scene-container">
-                    <div className="top-graph" style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist}
-                                           y_label_name={"F, сила"} result_label_name={""}
-                                           max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
-                                               this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-                                           max_x={1.5}/>
+            <div className="page-container">
+                <div className="bicycle-left">
+                    <div className="b-container">
+                        <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
                     </div>
-                    <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
-                    <div style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"}
-                                           y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}
-                                           max_y={1.5} max_x={1.5}/>
+                    <div className="v-box">
+                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                                               y_label_name={""} result_label_name={""}
+                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                               max_x={1.5} color={this.cyanColor}/>
+                            <div className="f-t-label" style={{color: this.cyanColor}}>
+                                <label style={{fontSize:"2em"}}>t</label>
+                                <label style={{fontSize: "1.3em"}}>сек</label>
+                            </div>
+                            <div className="f-f-label"  style={{color: this.cyanColor}}>
+                                <label style={{fontSize:"2em"}}>F</label>
+                                <label style={{fontSize:"1.3em"}}>сила</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="left-speedometer">
+                    <SpeedometerComponent speed={10.4} color={this.cyanColor}/>
+                </div>
+
+                <div className="center">
+                    <div className="center-box center-box-text" style={{height: "20%"}}>
+                        <label style={{fontSize: "2rem"}}>Задание</label>
+                        <div className="task-description" style={{fontSize: "1.7rem"}}>
+                            Здесь будет находится описание задачи. Сейчас 2 часа ночи. Мой мозг пишет этот текст из последних сил.
+                            Надеюсь мы уже на финальной прямой, потому что есть некотореы переживания.
+                            В целом, дизайн получается классным - мне нравится. Но сил уже почти нет :(
+                            А еще нужно проверить работу скрола, поэтому ааааааааааааа аааааааа ааааааа ааааааааааааа 000000 аааааааа аааааа ааааааа ааааааа аааа
+                            вот, так-то лучше
+                        </div>
+                    </div>
+
+                    <div className="center-box"  style={{height: "35%"}}>
+                        {/*<GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>*/}
+                        <button className="check-button">ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
+                    </div>
+
+                    <div className="v-box">
+                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                                               y_label_name={""} result_label_name={""}
+                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                               max_x={1.5} color={this.greenColor}/>
+                            <div className="f-t-label" style={{color: this.greenColor}}>
+                                <label style={{fontSize:"2em"}}>t</label>
+                                <label style={{fontSize: "1.3em"}}>сек</label>
+                            </div>
+                            <div className="f-f-label" style={{color: this.greenColor}}>
+                                <label style={{fontSize:"2em"}}>W</label>
+                                <label style={{fontSize:"1.3em"}}>обороты/сек</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="bicycle-data">
-                    Bicycle data
-                </div>
-
-                <div className="exercise-scene-container">
-                    <div className="top-graph" style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.exerciseFlist}
-                                           y_label_name={"F, сила"} result_label_name={""}
-                                           max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
-                                               this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-                                           max_x={1.5}/>
+                <div className="exercise-right">
+                    <div className="e-container">
+                        <ExerciseBikeComponent/>
                     </div>
-                    <ExerciseBikeComponent/>
-                    <div style={{width: "100%", height: "20rem"}}>
-                        <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+                    <div className="v-box">
+                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                                               y_label_name={""} result_label_name={""}
+                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                               max_x={1.5} color={this.yellowColor}/>
+                            <div className="f-t-label" style={{color: this.yellowColor}}>
+                                <label style={{fontSize:"2em"}}>t</label>
+                                <label style={{fontSize: "1.3em"}}>сек</label>
+                            </div>
+                            <div className="f-f-label" style={{color: this.yellowColor}}>
+                                <label style={{fontSize:"2em"}}>F</label>
+                                <label style={{fontSize:"1.3em"}}>сила</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div className="exercise-data">
-                    Excercise bike data
+                <div className="right-speedometer">
+                    <SpeedometerComponent speed={10.4} color={this.yellowColor}/>
                 </div>
-
-                <div className="table-container">
-                    <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
-                </div>
-
             </div>
+            // <div className="page" style={{overflow: "hidden"}}>
+            //
+            //     <div className="title">
+            //        Описание
+            //         <button onClick={this.startSimulation}> Начать </button>
+            //     </div>
+            //
+            //     <div className="bicycle-scene-container">
+            //         <div className="top-graph" style={{width: "100%", height: "20rem"}}>
+            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist}
+            //                                y_label_name={"F, сила"} result_label_name={""}
+            //                                max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
+            //                                    this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+            //                                max_x={1.5}/>
+            //         </div>
+            //         <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
+            //         <div style={{width: "100%", height: "20rem"}}>
+            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"}
+            //                                y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}
+            //                                max_y={1.5} max_x={1.5}/>
+            //         </div>
+            //     </div>
+            //
+            //     <div className="bicycle-data">
+            //         Bicycle data
+            //     </div>
+            //
+            //     <div className="exercise-scene-container">
+            //         <div className="top-graph" style={{width: "100%", height: "20rem"}}>
+            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.exerciseFlist}
+            //                                y_label_name={"F, сила"} result_label_name={""}
+            //                                max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+            //                                    this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+            //                                max_x={1.5}/>
+            //         </div>
+            //         <ExerciseBikeComponent/>
+            //         <div style={{width: "100%", height: "20rem"}}>
+            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}/>
+            //         </div>
+            //     </div>
+            //
+            //     <div className="exercise-data">
+            //         Excercise bike data
+            //     </div>
+            //
+            //     <div className="table-container">
+            //         <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
+            //     </div>
+            //
+            // </div>
         );
     }
 
