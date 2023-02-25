@@ -20,13 +20,13 @@ export default class SpeedometerComponent extends Component {
                     <div className="speed-box" style={{background: this.props.color}}>
                         <label
                             className="speed-text"
-                            style={{fontSize: "2.5em", color: "black"}}>
+                            style={{fontSize: "1.5em", color: "black"}}>
                             {this.props.speed}
                         </label>
                     </div>
                     <label
                         className="speed-text"
-                        style={{fontSize: "1.5em", color: this.props.color}}>
+                        style={{fontSize: "0.8em", color: this.props.color}}>
                         KM/H
                     </label>
                 </div>

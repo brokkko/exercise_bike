@@ -18,7 +18,7 @@ body {
     max-width: 350px;
     height: 300px;
     overflow: hidden;
-    /*transform: translateY(100px);*/
+    transform: translateY(120px);
 }
 
 .ex_bicycle-container .wheel {

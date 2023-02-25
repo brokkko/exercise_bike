@@ -182,12 +182,12 @@ export default class SceneComponent extends Component {
                                                    this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
                                                max_x={1.5} color={this.cyanColor}/>
                             <div className="f-t-label" style={{color: this.cyanColor}}>
-                                <label style={{fontSize:"2em"}}>t</label>
-                                <label style={{fontSize: "1.3em"}}>сек</label>
+                                <label style={{fontSize:"1.5em"}}>t</label>
+                                <label style={{fontSize: "1em"}}>сек</label>
                             </div>
                             <div className="f-f-label"  style={{color: this.cyanColor}}>
-                                <label style={{fontSize:"2em"}}>F</label>
-                                <label style={{fontSize:"1.3em"}}>сила</label>
+                                <label style={{fontSize:"1.5em"}}>F</label>
+                                <label style={{fontSize:"1em"}}>сила</label>
                             </div>
                         </div>
                     </div>
@@ -199,8 +199,8 @@ export default class SceneComponent extends Component {
 
                 <div className="center">
                     <div className="center-box center-box-text" style={{height: "20%"}}>
-                        <label style={{fontSize: "2rem"}}>Задание</label>
-                        <div className="task-description" style={{fontSize: "1.7rem"}}>
+                        <label style={{fontSize: "1rem"}}>Задание</label>
+                        <div className="task-description" style={{fontSize: "0.7rem"}}>
                             Здесь будет находится описание задачи. Сейчас 2 часа ночи. Мой мозг пишет этот текст из последних сил.
                             Надеюсь мы уже на финальной прямой, потому что есть некотореы переживания.
                             В целом, дизайн получается классным - мне нравится. Но сил уже почти нет :(
@@ -222,12 +222,12 @@ export default class SceneComponent extends Component {
                                                    this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
                                                max_x={1.5} color={this.greenColor}/>
                             <div className="f-t-label" style={{color: this.greenColor}}>
-                                <label style={{fontSize:"2em"}}>t</label>
-                                <label style={{fontSize: "1.3em"}}>сек</label>
+                                <label style={{fontSize:"1.5em"}}>t</label>
+                                <label style={{fontSize: "1em"}}>сек</label>
                             </div>
                             <div className="f-f-label" style={{color: this.greenColor}}>
-                                <label style={{fontSize:"2em"}}>W</label>
-                                <label style={{fontSize:"1.3em"}}>обороты/сек</label>
+                                <label style={{fontSize:"1.5em"}}>W</label>
+                                <label style={{fontSize:"1em"}}>обороты/сек</label>
                             </div>
                         </div>
                     </div>
@@ -245,12 +245,12 @@ export default class SceneComponent extends Component {
                                                    this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
                                                max_x={1.5} color={this.yellowColor}/>
                             <div className="f-t-label" style={{color: this.yellowColor}}>
-                                <label style={{fontSize:"2em"}}>t</label>
-                                <label style={{fontSize: "1.3em"}}>сек</label>
+                                <label style={{fontSize:"1.5em"}}>t</label>
+                                <label style={{fontSize: "1em"}}>сек</label>
                             </div>
                             <div className="f-f-label" style={{color: this.yellowColor}}>
-                                <label style={{fontSize:"2em"}}>F</label>
-                                <label style={{fontSize:"1.3em"}}>сила</label>
+                                <label style={{fontSize:"1.5em"}}>F</label>
+                                <label style={{fontSize:"1em"}}>сила</label>
                             </div>
                         </div>
                     </div>
@@ -259,56 +259,6 @@ export default class SceneComponent extends Component {
                     <SpeedometerComponent speed={10.4} color={this.yellowColor}/>
                 </div>
             </div>
-            // <div className="page" style={{overflow: "hidden"}}>
-            //
-            //     <div className="title">
-            //        Описание
-            //         <button onClick={this.startSimulation}> Начать </button>
-            //     </div>
-            //
-            //     <div className="bicycle-scene-container">
-            //         <div className="top-graph" style={{width: "100%", height: "20rem"}}>
-            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.bicycleFlist}
-            //                                y_label_name={"F, сила"} result_label_name={""}
-            //                                max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
-            //                                    this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-            //                                max_x={1.5}/>
-            //         </div>
-            //         <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
-            //         <div style={{width: "100%", height: "20rem"}}>
-            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"}
-            //                                y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}
-            //                                max_y={1.5} max_x={1.5}/>
-            //         </div>
-            //     </div>
-            //
-            //     <div className="bicycle-data">
-            //         Bicycle data
-            //     </div>
-            //
-            //     <div className="exercise-scene-container">
-            //         <div className="top-graph" style={{width: "100%", height: "20rem"}}>
-            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.exerciseFlist}
-            //                                y_label_name={"F, сила"} result_label_name={""}
-            //                                max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
-            //                                    this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-            //                                max_x={1.5}/>
-            //         </div>
-            //         <ExerciseBikeComponent/>
-            //         <div style={{width: "100%", height: "20rem"}}>
-            //             <GraphicsComponent x={this.state.Tlist} x_label_name={"t, сек"} y={this.state.wList} y_label_name={"W, обороты/сек"} result_label_name={""}/>
-            //         </div>
-            //     </div>
-            //
-            //     <div className="exercise-data">
-            //         Excercise bike data
-            //     </div>
-            //
-            //     <div className="table-container">
-            //         <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
-            //     </div>
-            //
-            // </div>
         );
     }
 

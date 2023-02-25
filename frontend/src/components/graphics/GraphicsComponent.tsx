@@ -34,7 +34,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         mode: 'lines+markers',
                         marker: {color: this.props.color},
                         textfont: {
-                            size: 20,
+                            size: 14,
                             color: "#E6E6E6"
                         }
                     },
@@ -46,7 +46,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         title: this.props.x_label_name,
                         titlefont: {
                             family: 'Rubik, sans serif',
-                            size: 28,
+                            size: 14,
                             color: this.props.color
                         },
                         range: [this.props.min_x || 0, this.props.max_x],
@@ -58,16 +58,16 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         title: this.props.y_label_name,
                         titlefont: {
                             family: 'Rubik, sans serif',
-                            size: 28,
+                            size: 14,
                             color: this.props.color
                         },
                         range: [this.props.min_y || 0, this.props.max_y],
                         color: "#E6E6E6"
                     },
-                    width: 780,
-                    height: 500,
+                    width: 410,
+                    height: 295,
                     font: {
-                        size: 20
+                        size: 12
                     },
                     plot_bgcolor:"#666666",
                     paper_bgcolor:"#666666",
