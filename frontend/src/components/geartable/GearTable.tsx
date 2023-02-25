@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../animation/ExerciseBikeStyle.css";
+
 import "./GearTable.css";
 
 type Props = {
@@ -155,17 +155,17 @@ export default class GearTable extends Component {
             leftPanel.push(<div className="left-panel-cell">{+cell + 1}</div>)
         }
 
-        for (let x in this.state.cells) {
-            for (let y in this.state.cells[x]) {
-                if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
-                    leftPanel[y] = <div className="left-panel-cell highlighted-colored">{+y + 1}</div>
-                    topPanel[x] = <div className="top-panel-cell highlighted-colored">{+x + 1}</div>
-                }
-            }
-        }
+        // for (let x in this.state.cells) {
+        //     for (let y in this.state.cells[x]) {
+        //         if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
+        //             leftPanel[y] = <div className="left-panel-cell highlighted-colored">{+y + 1}</div>
+        //             topPanel[x] = <div className="top-panel-cell highlighted-colored">{+x + 1}</div>
+        //         }
+        //     }
+        // }
 
         return (
-            <div>
+            <div style={{position: "relative"}}>
                 <div className="outer">
                     <div className="top">
                         {topPanel}
