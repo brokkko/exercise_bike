@@ -8,7 +8,8 @@ export default class PhysicsCore{
     private selectedNiIndex: number;
     private t: number;
     private u: number;
-    private subscriber: (W: number, V: number, F: number, t: number) => void;
+    private subscriber?: (W: number, V: number, F: number, t: number) => void;
+    private exerciseSubscriber?: (W: number, V: number, F: number, power: number, t: number) => void;
 
     private intervalId: ReturnType<typeof setInterval> | undefined;
 
@@ -16,7 +17,7 @@ export default class PhysicsCore{
     constructor(gears: number[]) {
         this.inputModel = {
             kd: 1,
-            l: 1,
+            l: 1.5,
             ni: gears, // gears
             w: w1
         };
@@ -69,16 +70,31 @@ export default class PhysicsCore{
                   this.stop();
                   return;
             }
+
             this.step();
+
             if (this.subscriber){
                 this.subscriber(this.getW(), this.getV(), this.getF(), this.getT())
+            }
+            if (this.exerciseSubscriber){
+                this.exerciseSubscriber(this.getW(), this.getVex(), this.getFex(), this.getPowerEx(), this.getT())
             }
 
         }, 200)
     }
 
     public subscribe(subscriber: (W: number, V: number, F: number, t: number) => void): void {
+        if (this.exerciseSubscriber){
+            throw new Error("only one type of subscribers can be present")
+        }
         this.subscriber = subscriber;
+    }
+
+    public subscribeAsEx(exerciseSubscriber: (W: number, V: number, F: number, power: number, t: number) => void){
+        if (this.subscriber){
+            throw new Error("only one type of subscribers can be present")
+        }
+        this.exerciseSubscriber = exerciseSubscriber
     }
 
     public stop(): void {
@@ -109,8 +125,20 @@ export default class PhysicsCore{
         return this.u * this.selectedNi;
     }
 
+    public getVex(): number{
+        return this.u * Math.sqrt((2*this.selectedNi) / this.inputModel.kd)
+    }
+
     public getF(): number {
         return this.inputModel.kd * this.selectedNi * this.selectedNi * this.u;
+    }
+
+    public getFex(): number{
+        return this.selectedNi * this.u
+    }
+
+    public getPowerEx(): number{
+        return 2 * this.selectedNi * this.u * this.u
     }
 
     public getT(): number {

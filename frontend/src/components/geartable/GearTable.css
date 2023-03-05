@@ -1,6 +1,6 @@
 .table, .outer{
-    --top-margin: 2rem;
-    --left-margin: 2rem;
+    --top-margin: 45px;
+    --left-margin: 45px;
 }
 
 .table{
@@ -13,8 +13,8 @@
 }
 
 .cell{
-    /*width: 2rem;*/
-    /*height: 2rem;*/
+    width: var(--left-margin);
+    height: var(--left-margin);
     /*border: 1px solid black;*/
     text-align: center;
     background: #8A8A8A;
@@ -40,7 +40,7 @@
 
 .outer{
     position: absolute;
-    top: -2rem; /* */
+    top: calc(0 - var(--top-margin)); /* */
     left: calc(0 - var(--left-margin));
 }
 
@@ -69,13 +69,13 @@
 }
 
 .top-panel-cell{
-    height: calc(2rem + 1px);
-    width: 2rem;
+    height: calc(var(--left-margin) + 1px);
+    width: var(--left-margin);
 }
 
 .left-panel-cell{
-    width: 2rem;
-    height: 2rem;
+    width: var(--left-margin);
+    height: var(--left-margin);
 }
 
 .cell:focus{

@@ -55,6 +55,8 @@ export default class GearTable extends Component {
             cells: cells
         })
 
+        // this.props.onChange(this.get2dArray())
+
     }
 
     private get2dArray = () => {
@@ -165,7 +167,7 @@ export default class GearTable extends Component {
         // }
 
         return (
-            <div style={{position: "relative"}}>
+            <div style={{position: "relative", transform: "translateX(-24px)"}}>
                 <div className="outer">
                     <div className="top">
                         {topPanel}
@@ -175,7 +177,7 @@ export default class GearTable extends Component {
                     </div>
                 </div>
 
-                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 2rem)`}} className="table">
+                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 45px)`}} className="table">
                     {cells}
                 </div>
             </div>

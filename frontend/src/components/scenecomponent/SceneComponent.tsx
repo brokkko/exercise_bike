@@ -16,7 +16,9 @@ type State = {
     Tlist: number[];
     wList: number[];
     bicycleFlist: number[];
+    bicycleSpeed: number;
     exerciseFlist: number[];
+    exerciseSpeed: number;
 
     tableData: number[][];
 }
@@ -26,8 +28,8 @@ export default class SceneComponent extends Component {
     state: State;
     props: Props;
 
-    bicyclePhysics: PhysicsCore;
-    exerciseBikePhysics: PhysicsCore;
+    bicyclePhysics: PhysicsCore | undefined;
+    exerciseBikePhysics: PhysicsCore | undefined;
     graphicsBackground: string;
     yellowColor: string;
     cyanColor: string;
@@ -37,16 +39,14 @@ export default class SceneComponent extends Component {
         super(props);
         this.props = props;
 
-        let gears = [3.4, 3.14,  2.75, 2.83, 2.8, 2.42, 2.125, 1.88, 1.61, 1.57, 1.41, 1.21, 1.06, 1.0, 0.94, 0.80,  0.75, 0.68].reverse()
-
-        this.bicyclePhysics = new PhysicsCore(gears);
-        this.exerciseBikePhysics = new PhysicsCore(gears);
 
         this.state = {
             Tlist: [],
             wList: [],
             bicycleFlist: [],
+            bicycleSpeed: 0,
             exerciseFlist: [],
+            exerciseSpeed: 0,
             tableData: [[]]
         }
 
@@ -58,7 +58,7 @@ export default class SceneComponent extends Component {
     }
 
     componentDidMount = () => {
-        this.loadLevel(this.props.level)
+        this.loadLevel(this.props.level) // TODO: maybe just put in into constructor?
     }
 
     private loadLevel = (selectedLvl: Level) => {
@@ -100,6 +100,25 @@ export default class SceneComponent extends Component {
     }
 
     startSimulation = () => {
+        let gears = [3.4, 3.14,  2.75, 2.83, 2.8, 2.42, 2.125, 1.88, 1.61, 1.57, 1.41, 1.21, 1.06, 1.0, 0.94, 0.80,  0.75, 0.68].reverse()
+
+        if (this.bicyclePhysics){
+            this.bicyclePhysics.stop()
+        }
+        if (this.exerciseBikePhysics){
+            this.exerciseBikePhysics.stop()
+        }
+
+        this.bicyclePhysics = new PhysicsCore(gears);
+        this.exerciseBikePhysics = new PhysicsCore(gears);
+
+        this.setState({
+            Tlist: [],
+            wList: [],
+            bicycleFlist: [],
+            exerciseFlist: []
+        })
+
         this.startBicycleSimulation();
         this.startExerciseSimulation();
     }
@@ -117,12 +136,15 @@ export default class SceneComponent extends Component {
                 Tlist: [...this.state.Tlist, t],
                 wList: [...this.state.wList, W],
                 bicycleFlist: [...this.state.bicycleFlist, F],
-
+                bicycleSpeed: V
             })
         }
 
-        this.bicyclePhysics.subscribe(subscriber);
-        this.bicyclePhysics.run();
+        if (this.bicyclePhysics){
+            this.bicyclePhysics.subscribe(subscriber);
+            this.bicyclePhysics.run();
+        }
+
     }
 
     startExerciseSimulation = () => {
@@ -133,11 +155,15 @@ export default class SceneComponent extends Component {
                 F = Math.round(F * 100) / 100;
 
                 this.setState({
-                    exerciseFlist: [...this.state.exerciseFlist, F]
+                    exerciseFlist: [...this.state.exerciseFlist, F],
+                    exerciseSpeed: V
                 })
         }
-        this.exerciseBikePhysics.subscribe(subscriber);
-        this.exerciseBikePhysics.run();
+        if (this.exerciseBikePhysics){
+            this.exerciseBikePhysics.subscribe(subscriber);
+            this.exerciseBikePhysics.run();
+        }
+
     }
 
     tableChange = (arr: number[][]) => {
@@ -149,14 +175,20 @@ export default class SceneComponent extends Component {
     }
 
     updateExerciseBikeGears = (arr: number[][]) => {
-        let gears: number[] = []
-        arr.forEach((row) => {
-            row.forEach((value) => {
-                gears.push(this.bicyclePhysics.getNi()[value - 1])
+        if (this.bicyclePhysics){
+            let gears: number[] = []
+            arr.forEach((row) => {
+                row.forEach((value) => {
+                    // @ts-ignore
+                    gears.push(this.bicyclePhysics.getNi()[value - 1])
+                })
             })
-        })
 
-        this.exerciseBikePhysics.setNi(gears)
+            // @ts-ignore
+            this.exerciseBikePhysics.setNi(gears)
+
+        }
+
     };
 
     render() {
@@ -169,6 +201,7 @@ export default class SceneComponent extends Component {
         })
 
         return (
+            this.props.level == Level.low_1_5 || Level.middle_6_8 ? // Это всё для маленьких
             <div className="page-container">
                 <div className="bicycle-left">
                     <div className="b-container">
@@ -176,10 +209,10 @@ export default class SceneComponent extends Component {
                     </div>
                     <div className="v-box">
                         <div className="f-graphic" style={{background: this.graphicsBackground}}>
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.bicycleFlist}
                                                y_label_name={""} result_label_name={""}
-                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
-                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                               max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
+                                                   this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
                                                max_x={1.5} color={this.cyanColor}/>
                             <div className="f-t-label" style={{color: this.cyanColor}}>
                                 <label style={{fontSize:"1.5em"}}>t</label>
@@ -194,32 +227,26 @@ export default class SceneComponent extends Component {
 
                 </div>
                 <div className="left-speedometer">
-                    <SpeedometerComponent speed={10.4} color={this.cyanColor}/>
+                    <SpeedometerComponent speed={Math.round(this.state.bicycleSpeed * 100) / 100} color={this.cyanColor}/>
                 </div>
 
                 <div className="center">
                     <div className="center-box center-box-text" style={{height: "20%"}}>
                         <label style={{fontSize: "1rem"}}>Задание</label>
-                        <div className="task-description" style={{fontSize: "0.7rem"}}>
-                            Здесь будет находится описание задачи. Сейчас 2 часа ночи. Мой мозг пишет этот текст из последних сил.
-                            Надеюсь мы уже на финальной прямой, потому что есть некотореы переживания.
-                            В целом, дизайн получается классным - мне нравится. Но сил уже почти нет :(
-                            А еще нужно проверить работу скрола, поэтому ааааааааааааа аааааааа ааааааа ааааааааааааа 000000 аааааааа аааааа ааааааа ааааааа аааа
-                            вот, так-то лучше
-                        </div>
+                        <div className="task-description" style={{fontSize: "0.7rem"}}>Задание
+                            Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие  в формировании системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что постоянное информационно-пропагандистское </div>
                     </div>
 
                     <div className="center-box"  style={{height: "35%"}}>
                         <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
-                        <button className="check-button">ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
+                        <button className="check-button" onClick={this.startSimulation}>ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
                     </div>
 
                     <div className="v-box">
                         <div className="f-graphic" style={{background: this.graphicsBackground}}>
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.wList}
                                                y_label_name={""} result_label_name={""}
-                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
-                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                               max_y={2}
                                                max_x={1.5} color={this.greenColor}/>
                             <div className="f-t-label" style={{color: this.greenColor}}>
                                 <label style={{fontSize:"1.5em"}}>t</label>
@@ -235,7 +262,7 @@ export default class SceneComponent extends Component {
 
                 <div className="exercise-right">
                     <div className="e-container">
-                        <ExerciseBikeComponent/>
+                        <ExerciseBikeComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
                     </div>
                     <div className="v-box">
                         <div className="f-graphic" style={{background: this.graphicsBackground}}>
@@ -256,9 +283,15 @@ export default class SceneComponent extends Component {
                     </div>
                 </div>
                 <div className="right-speedometer">
-                    <SpeedometerComponent speed={10.4} color={this.yellowColor}/>
+                    <SpeedometerComponent speed={Math.round(this.state.exerciseSpeed * 100) / 100} color={this.yellowColor}/>
                 </div>
             </div>
+
+                :
+
+                <>
+                {/*    А тут всё для взрослых*/}
+                </>
         );
     }
 

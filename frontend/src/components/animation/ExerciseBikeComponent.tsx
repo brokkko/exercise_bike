@@ -7,11 +7,11 @@ type ExerciseBikeProps = {
 
 export default class ExerciseBikeComponent extends Component {
 
-    state: ExerciseBikeProps;
+    props: ExerciseBikeProps
 
     constructor(props: ExerciseBikeProps, context: any) {
         super(props, context);
-        this.state = {animationSpeed: 10};
+        this.props = props
     }
 
 
@@ -21,7 +21,7 @@ export default class ExerciseBikeComponent extends Component {
 
 
                 <div className="ex_bicycle-container">
-                    <div className="gear" style={{animation: `rt ${this.state.animationSpeed}s linear infinite`}}>
+                    <div className="gear" style={{animation: `rt ${1/this.props.animationSpeed}s linear infinite`}}>
                         <div className="gear-red"></div>
                         <div className="tube pedal-tube"></div>
                         <div className="pedal"></div>

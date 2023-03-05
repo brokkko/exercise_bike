@@ -64,8 +64,8 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         range: [this.props.min_y || 0, this.props.max_y],
                         color: "#E6E6E6"
                     },
-                    width: 410,
-                    height: 295,
+                    width: 520,
+                    height: 395,
                     font: {
                         size: 12
                     },

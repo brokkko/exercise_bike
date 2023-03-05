@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import BicycleComponent from "./components/animation/BicycleComponent";
 import ExerciseBikeComponent from "./components/animation/ExerciseBikeComponent";
