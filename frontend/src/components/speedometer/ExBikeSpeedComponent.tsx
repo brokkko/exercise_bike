@@ -28,16 +28,16 @@ export default class ExBikeSpeedComponent extends Component {
                     </div>
                     <div className={this.props.isBlur ? "ex-bike-speed-box-2 blur-mode" : "ex-bike-speed-box-2"}>
                         <text className="inbox-title">speed</text>
-                        <section style={{fontSize: "76px"}}>
+                        <section style={{fontSize: "56px"}}>
                             {/*  10 curr speed*/} 10
-                            <text>KM/H</text>
+                            <text style={{fontSize: "20px"}}>KM/H</text>
                         </section>
                     </div>
                     <div className={this.props.isBlur ? "ex-bike-speed-box-2 blur-mode" : "ex-bike-speed-box-2"}>
                         <text className="inbox-title">DISTANCE</text>
-                        <section style={{fontSize: "76px"}}>
+                        <section style={{fontSize: "56px"}}>
                             {/*  10 curr dist*/} 10
-                            <text>KM</text>
+                            <text style={{fontSize: "20px"}}>KM</text>
                         </section>
                     </div>
                 </div>

@@ -16,7 +16,7 @@
 }
 
 .ex-bike-speed-box {
-    height: 33%;
+    height: 100%;
     width: 100%;
     background: #E6E6E6;
 
@@ -28,15 +28,14 @@
 }
 
 .ex-bike-speed-box-2 {
-    height: 22%;
+    height: 50%;
     width: 100%;
     background: #E6E6E6;
-
     position: relative;
-
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .blur-mode {
@@ -68,6 +67,7 @@
     width: 100%;
     flex-direction: row;
     align-items: center;
+    margin-top: 50px;
 }
 
 .ex-bike-speed-box section * {
@@ -80,4 +80,8 @@
     background: #666666;
     width: 100%;
     height: 100%;
+}
+
+.ex-bike-speed-box section text {
+    font-size: 20px;
 }
