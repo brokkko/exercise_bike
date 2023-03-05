@@ -6,3 +6,8 @@ body {
   min-height: 100vh;
   background: #ffffff;
 }
+
+@font-face{
+  font-family:'digital-font';
+  src: url(assets/fonts/DS-DIGIB.TTF) format('truetype');
+}

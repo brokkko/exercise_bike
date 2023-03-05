@@ -22,28 +22,33 @@ export default class BikeSpeedComponent extends Component {
                 <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 1.5rem " + this.props.color}}>
                     <div className="bike-speed-box">
                         <div className="bike-derailleurs bike-left-box">
-                            <label
-                                className="bike-speed-box-title">
-                                Выбранная передача
-                            </label>
-                            <div className="bike-derailleurs-content">
-                                <label>
-                                    {this.props.left}
-                                </label>
-                                <label>
-                                    левая
-                                </label>
-                            </div>
+                            <text className="inbox-title" >GEARS</text>
+                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px"}}>
+                                {/*  10 curr dist*/} 03
+                                <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>LEFT</text>
+                            </section>
                         </div>
                         <div className="bike-derailleurs bike-right-box">
-                            right
+                            {/*<text className="inbox-title">RIGHT</text>*/}
+                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px"}}>
+                                {/*  10 curr gear x*/} 09
+                                <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>RIGHT</text>
+                            </section>
                         </div>
                     </div>
                     <div className="bike-speed-box">
-                        speed
+                        <text className="inbox-title">speed</text>
+                        <section style={{fontSize: "76px"}}>
+                            {/*  10 curr speed*/} 10
+                            <text>KM/H</text>
+                        </section>
                     </div>
                     <div className="bike-speed-box">
-                        distance
+                        <text className="inbox-title">DISTANCE</text>
+                        <section style={{fontSize: "76px"}}>
+                            {/*  10 curr dist*/} 10
+                            <text>KM</text>
+                        </section>
                     </div>
                 </div>
             </>
