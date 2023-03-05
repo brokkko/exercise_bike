@@ -28,8 +28,8 @@
 }
 
 .left-speedometer {
-    width: 6vw;
-    height: 6vw;
+    width: 250px;
+    height: 325px;
     position: absolute;
     top: 3%;
     left: 17%;
