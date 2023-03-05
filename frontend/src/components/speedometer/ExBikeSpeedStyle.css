@@ -1,4 +1,4 @@
-.bike-speedometer-container {
+.ex-bike-speedometer-container {
     width: 100%;
     height: 100%;
     border-radius: 20px;
@@ -15,7 +15,7 @@
     font-family: digital-font, serif;
 }
 
-.bike-speed-box {
+.ex-bike-speed-box {
     height: 33%;
     width: 100%;
     background: #E6E6E6;
@@ -27,22 +27,30 @@
     align-items: center;
 }
 
-.bike-derailleurs{
+.ex-bike-speed-box-2 {
+    height: 22%;
+    width: 100%;
+    background: #E6E6E6;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.blur-mode {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+}
+
+.ex-bike-derailleurs{
     font-weight: 600;
     line-height: 19px;
     text-align: center;
-}
-
-.bike-left-box {
-    background: #66FFCC;
-    width: 50%;
-    height: 100%;
-}
-
-.bike-right-box {
-    background: #6EE2FF;
-    width: 50%;
-    height: 100%;
 }
 
 .inbox-title{
@@ -53,7 +61,7 @@
 
 }
 
-.bike-speed-box section{
+.ex-bike-speed-box section{
     font-size: 56px;
     display: flex;
     justify-content: center;
@@ -62,8 +70,14 @@
     align-items: center;
 }
 
-.bike-speed-box section * {
+.ex-bike-speed-box section * {
     font-size: 20px;
     align-self: flex-end;
     margin-bottom: 10px;
+}
+
+.ex-bike-table {
+    background: #666666;
+    width: 100%;
+    height: 100%;
 }

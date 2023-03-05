@@ -6,7 +6,8 @@ import GearTable from "../geartable/GearTable";
 import GraphicsComponent from "../graphics/GraphicsComponent";
 import PhysicsCore from "../../physics/PhysicsCore";
 import {Level} from "../../Level";
-import BikeSpeedComponent from "../speedometr/BikeSpeedComponent";
+import BikeSpeedComponent from "../speedometer/BikeSpeedComponent";
+import ExBikeSpeedComponent from "../speedometer/ExBikeSpeedComponent";
 
 type Props = {
     level: Level
@@ -227,7 +228,7 @@ export default class SceneComponent extends Component {
 
                 </div>
                 <div className="left-speedometer">
-                    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} />
+                    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>
                 </div>
 
                 <div className="center">
@@ -283,7 +284,7 @@ export default class SceneComponent extends Component {
                     </div>
                 </div>
                 <div className="right-speedometer">
-                    {/*<SpeedometerComponent speed={Math.round(this.state.exerciseSpeed * 100) / 100} color={this.yellowColor}/>*/}
+                    <ExBikeSpeedComponent color={this.yellowColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
                 </div>
             </div>
 

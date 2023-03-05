@@ -6,7 +6,8 @@ type SpeedometerProps = {
     right?: string,
     speed?: number,
     distance?: number,
-    color: string
+    color: string,
+    isBlur?: boolean
 }
 
 export default class BikeSpeedComponent extends Component {
@@ -20,7 +21,7 @@ export default class BikeSpeedComponent extends Component {
         return (
             <>
                 <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 1.5rem " + this.props.color}}>
-                    <div className="bike-speed-box">
+                    <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <div className="bike-derailleurs bike-left-box">
                             <text className="inbox-title" >GEARS</text>
                             <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px"}}>
@@ -36,14 +37,14 @@ export default class BikeSpeedComponent extends Component {
                             </section>
                         </div>
                     </div>
-                    <div className="bike-speed-box">
+                    <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">speed</text>
                         <section style={{fontSize: "76px"}}>
                             {/*  10 curr speed*/} 10
                             <text>KM/H</text>
                         </section>
                     </div>
-                    <div className="bike-speed-box">
+                    <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">DISTANCE</text>
                         <section style={{fontSize: "76px"}}>
                             {/*  10 curr dist*/} 10
