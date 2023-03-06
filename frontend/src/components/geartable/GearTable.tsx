@@ -1,5 +1,16 @@
 import React, {Component} from "react";
 
+import gear12 from "../../assets/gears/Vector12.svg"
+import gear14 from "../../assets/gears/Vector14.svg"
+import gear16 from "../../assets/gears/Vector16.svg"
+import gear18 from "../../assets/gears/Vector18.svg"
+import gear21 from "../../assets/gears/Vector21.svg"
+import gear24 from "../../assets/gears/Vector24.svg"
+import gear34 from "../../assets/gears/Vector34.svg"
+import gear44 from "../../assets/gears/Vector44.svg"
+
+
+
 import "./GearTable.css";
 
 type Props = {
@@ -119,7 +130,7 @@ export default class GearTable extends Component {
                     <input
                         onChange={(e) => {
                             let tableData = this.state.cells
-                            tableData[row][cellData].value = +e.target.value
+                            tableData[row][cellData].value = +e.target.value // TODO: validation
                             this.setState({
                                 cells: tableData
                             })
@@ -147,24 +158,47 @@ export default class GearTable extends Component {
             }
         }
 
-        let topPanel = [];
+        let topgears = [
+            <img src={gear44}/>,
+            <img src={gear34}/>,
+            <img src={gear24}/>,
+        ].reverse()
+
+        let topgearsN = [
+            24, 34 , 44
+        ]
+
+        let leftgearsN = [
+            12,14,16,18,21,24
+        ]
+
+        let leftgears = [
+            <img src={gear12}/>,
+            <img src={gear14}/>,
+            <img src={gear16}/>,
+            <img src={gear18}/>,
+            <img src={gear21}/>,
+            <img src={gear24}/>,
+        ]
+
+        let topPanel = [];  // panels vise-versa
         for (let cell in this.state.cells) {
-            topPanel.push(<div className="top-panel-cell">{+cell + 1}</div>)
+            topPanel.push(<div style={{transform: "scale(0.7)", position: "relative"}} className="top-panel-cell" >{topgears[+cell]} <p style={{position: "absolute"}}> {topgearsN[+cell]} </p></div>)
         }
 
         let leftPanel = [];
         for (let cell in this.state.cells[0]) {
-            leftPanel.push(<div className="left-panel-cell">{+cell + 1}</div>)
+            leftPanel.push(<div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell">{leftgears[+cell]}  <p style={{position: "absolute"}}> {leftgearsN[+cell]} </p></div>)
         }
 
-        // for (let x in this.state.cells) {
-        //     for (let y in this.state.cells[x]) {
-        //         if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
-        //             leftPanel[y] = <div className="left-panel-cell highlighted-colored">{+y + 1}</div>
-        //             topPanel[x] = <div className="top-panel-cell highlighted-colored">{+x + 1}</div>
-        //         }
-        //     }
-        // }
+        for (let x in this.state.cells) {
+            for (let y in this.state.cells[x]) {
+                if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
+                    leftPanel[y] = <div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell highlighted-colored">{leftgears[+y]}  <p style={{position: "absolute"}}> {leftgearsN[+y]} </p></div>
+                    topPanel[x] = <div style={{transform: "scale(0.7)", position: "relative"}} className="top-panel-cell highlighted-colored">{topgears[+x]} <p style={{position: "absolute"}}> {topgearsN[+x]} </p></div>
+                }
+            }
+        }
 
         return (
             <div style={{position: "relative", transform: "translateX(-24px)"}}>

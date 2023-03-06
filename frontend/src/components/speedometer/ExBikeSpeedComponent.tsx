@@ -4,7 +4,7 @@ import "./ExBikeSpeedStyle.css";
 type SpeedometerProps = {
     time?: string,
     power?: number,
-    speed?: number,
+    speed: number,
     distance?: number,
     color: string,
     isBlur?: boolean

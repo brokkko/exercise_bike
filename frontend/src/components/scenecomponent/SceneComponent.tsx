@@ -238,7 +238,7 @@ export default class SceneComponent extends Component {
                         </div>
                     </div>
 
-                    <div className="center-box"  style={{height: "35%"}}>
+                    <div className="center-box"  style={{height: "35%", flexDirection: "column"}}>
                         <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
                         <button className="check-button" onClick={this.startSimulation}>ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
                     </div>
