@@ -6,6 +6,7 @@ import GraphicsComponent from "../graphics/GraphicsComponent";
 import PhysicsCore from "../../physics/PhysicsCore";
 import {Level} from "../../Level";
 import ExBikeSpeedComponent from "../speedometer/ExBikeSpeedComponent";
+import BikeSpeedComponent from "../speedometer/BikeSpeedComponent";
 
 type Props = {
     level: Level
@@ -222,17 +223,19 @@ export default class SceneComponent extends Component {
                             </div>
                         </div>
                     </div>
-
+                    <div className="left-speedometer-handlebar">
+                        <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>
+                    </div>
                 </div>
-                {/*<div className="left-speedometer">*/}
-                {/*    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>*/}
-                {/*</div>*/}
 
                 <div className="center">
-                    <div className="center-box center-box-text" style={{height: "20%"}}>
-                        <label style={{fontSize: "1rem"}}>Задание</label>
-                        <div className="task-description" style={{fontSize: "0.7rem"}}>Задание
-                            Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие  в формировании системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что постоянное информационно-пропагандистское </div>
+                    <div className="center-box" style={{height: "30%"}}>
+                        <div className="left-speedometer">
+                            <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
+                        </div>
+                        <div className="right-speedometer">
+                            <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
+                        </div>
                     </div>
 
                     <div className="center-box"  style={{height: "35%"}}>
@@ -259,9 +262,8 @@ export default class SceneComponent extends Component {
                 </div>
 
                 <div className="exercise-right">
-                    <div className="e-container">
-                        <ExerciseBikeComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
-                    </div>
+                    <div className="ex-bike-handlebar" />
+                    <div className="e-container"/>
                     <div className="v-box">
                         <div className="f-graphic" style={{background: this.graphicsBackground}}>
                             <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
@@ -279,10 +281,11 @@ export default class SceneComponent extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="right-speedometer-handlebar">
+                        <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={true}/>
+                    </div>
                 </div>
-                <div className="right-speedometer">
-                    <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
-                </div>
+
             </div>
 
                 :

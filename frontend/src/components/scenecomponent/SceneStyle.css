@@ -18,19 +18,17 @@
     width: 31%;
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
+    align-items: center;
     justify-content: flex-end;
 
+    padding-top: 2%;
     padding-bottom: 1%;
     position: relative;
-
-    gap: 30px;
 }
 
 .left-speedometer {
-    width: 250px;
-    height: 325px;
-    position: absolute;
+    width: 180px;
+    height: 225px;
     top: 3%;
     left: 17%;
 }
@@ -61,9 +59,8 @@
 }
 
 .right-speedometer {
-    width: 250px;
-    height: 325px;
-    position: absolute;
+    width: 180px;
+    height: 225px;
     top: 2%;
     right: 15%;
 }
@@ -116,41 +113,68 @@
 
 .b-container{
     /*scale: 1.2;*/
-    height: 150%;
-    width: 70%;
+    height: 100%;
+    width: 440px;
+    position: absolute;
     background: url("../../assets/components/BikeModel.svg");
     background-size: contain;
     background-repeat: no-repeat;
+
+    top: 230px;
+    left: 80px;
 }
 
 .bike-handlebar{
     height: 100%;
-    width: 70%;
+    width: 450px;
+    position: absolute;
     background: url("../../assets/components/BikeHandlebar.svg");
     background-size: contain;
     background-repeat: no-repeat;
+
+    top: 40px;
+    left: 75px;
+
+}
+
+.ex-bike-handlebar{
+    height: 100%;
+    width: 250px;
+    position: absolute;
+    background: url("../../assets/components/ExBikeHandlebar.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    top: 60px;
+    right: 350px;
 }
 
 .e-container {
-    scale: 1.3;
-    width: 100%;
+    height: 100%;
+    width: 250px;
+    position: absolute;
+    background: url("../../assets/components/ExBikeModel.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    top: 160px;
+    right: 140px;
 }
 
 .center-box{
-    background: #D3D3D3;
     border-radius: 10px;
     width: 100%;
     padding: 12px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 15px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .center-box-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 5px;
 
@@ -212,4 +236,20 @@
 .check-button:active {
     color: #666666;
     background: #ffffff;
+}
+
+.left-speedometer-handlebar {
+    position: absolute;
+    width: 100px;
+    height: 125px;
+    top: 80px;
+    left: 250px;
+}
+
+.right-speedometer-handlebar{
+    position: absolute;
+    width: 100px;
+    height: 125px;
+    top: 110px;
+    right: 425px;
 }

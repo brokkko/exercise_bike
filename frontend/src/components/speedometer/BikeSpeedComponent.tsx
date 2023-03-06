@@ -20,7 +20,7 @@ export default class BikeSpeedComponent extends Component {
     render() {
         return (
             <>
-                <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 1.5rem " + this.props.color}}>
+                <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 1.3rem " + this.props.color}}>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <div className="bike-derailleurs bike-left-box">
                             <text className="inbox-title" >GEARS</text>
