@@ -65,7 +65,7 @@ export default class GraphicsComponent extends Component<GraphicsProps> {
                         color: "#E6E6E6"
                     },
                     width: 494,
-                    height: 395,
+                    height: 300,
                     font: {
                         size: 12
                     },

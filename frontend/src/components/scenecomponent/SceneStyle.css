@@ -59,6 +59,7 @@
 
     padding-bottom: 1%;
 }
+
 .right-speedometer {
     width: 250px;
     height: 325px;
@@ -76,7 +77,7 @@
 
 .f-graphic{
     width: 500px;
-    height: 405px;
+    height: 305px;
     border-radius: 10px;
     position: relative;
     display: flex;
