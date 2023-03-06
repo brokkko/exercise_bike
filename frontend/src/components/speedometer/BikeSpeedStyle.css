@@ -10,7 +10,7 @@
     justify-content: center;
     gap: 1px;
     align-items: center;
-    outline: 0.9rem solid #000000;
+    outline: 5px solid #000000;
     overflow: hidden;
     font-family: digital-font, serif;
 }

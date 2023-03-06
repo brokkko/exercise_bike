@@ -20,18 +20,18 @@ export default class BikeSpeedComponent extends Component {
     render() {
         return (
             <>
-                <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 1.3rem " + this.props.color}}>
+                <div className="bike-speedometer-container" style={{boxShadow: "0 0 0 10px" + this.props.color}}>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <div className="bike-derailleurs bike-left-box">
                             <text className="inbox-title" >GEARS</text>
-                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px"}}>
+                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px", fontSize: "36px"}}>
                                 {/*  10 curr dist*/} 03
                                 <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>LEFT</text>
                             </section>
                         </div>
                         <div className="bike-derailleurs bike-right-box">
                             {/*<text className="inbox-title">RIGHT</text>*/}
-                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px"}}>
+                            <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px", fontSize: "36px"}}>
                                 {/*  10 curr gear x*/} 09
                                 <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>RIGHT</text>
                             </section>
@@ -39,14 +39,14 @@ export default class BikeSpeedComponent extends Component {
                     </div>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">speed</text>
-                        <section style={{fontSize: "76px"}}>
+                        <section style={{fontSize: "55px"}}>
                             {/*  10 curr speed*/} 10
                             <text>KM/H</text>
                         </section>
                     </div>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">DISTANCE</text>
-                        <section style={{fontSize: "76px"}}>
+                        <section style={{fontSize: "50px", marginTop: "20px"}}>
                             {/*  10 curr dist*/} 10
                             <text>KM</text>
                         </section>
