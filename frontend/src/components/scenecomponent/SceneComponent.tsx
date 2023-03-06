@@ -1,12 +1,10 @@
 import {Component, Suspense} from "react";
 import "./SceneStyle.css";
-import BicycleComponent from "../animation/BicycleComponent";
 import ExerciseBikeComponent from "../animation/ExerciseBikeComponent";
 import GearTable from "../geartable/GearTable";
 import GraphicsComponent from "../graphics/GraphicsComponent";
 import PhysicsCore from "../../physics/PhysicsCore";
 import {Level} from "../../Level";
-import BikeSpeedComponent from "../speedometer/BikeSpeedComponent";
 import ExBikeSpeedComponent from "../speedometer/ExBikeSpeedComponent";
 
 type Props = {
@@ -205,9 +203,8 @@ export default class SceneComponent extends Component {
             this.props.level == Level.low_1_5 || Level.middle_6_8 ? // Это всё для маленьких
             <div className="page-container">
                 <div className="bicycle-left">
-                    <div className="b-container">
-                        <BicycleComponent animationSpeed={this.state.wList[this.state.wList.length - 1]}/>
-                    </div>
+                    <div className="bike-handlebar" />
+                    <div className="b-container" />
                     <div className="v-box">
                         <div className="f-graphic" style={{background: this.graphicsBackground}}>
                             <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.bicycleFlist}
@@ -227,9 +224,9 @@ export default class SceneComponent extends Component {
                     </div>
 
                 </div>
-                <div className="left-speedometer">
-                    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>
-                </div>
+                {/*<div className="left-speedometer">*/}
+                {/*    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>*/}
+                {/*</div>*/}
 
                 <div className="center">
                     <div className="center-box center-box-text" style={{height: "20%"}}>
@@ -284,7 +281,7 @@ export default class SceneComponent extends Component {
                     </div>
                 </div>
                 <div className="right-speedometer">
-                    <ExBikeSpeedComponent color={this.yellowColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
+                    <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
                 </div>
             </div>
 
