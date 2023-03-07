@@ -14,12 +14,25 @@
 .bicycle-left{
     border: 5px solid #66FFCC;
     border-radius: 10px;
-    height: 95%;
+    height: 91%;
     width: 31%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
+    padding-top: 2%;
+    padding-bottom: 1%;
+    position: relative;
+}
+
+.bicycle-left-2 {
+    border: 5px solid #66FFCC;
+    border-radius: 10px;
+    height: 91%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
 
     padding-top: 2%;
     padding-bottom: 1%;
@@ -33,9 +46,35 @@
     left: 17%;
 }
 
+.left-speedometer-2 {
+    width: 180px;
+    height: 225px;
+
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    scale: 1.5;
+}
+
 .center {
     height: 95%;
     width: 27%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1%;
+    padding-bottom: 1.5%;
+}
+
+.center-2 {
+    border: 5px solid #8EED00;
+    background: #B3B3B3;
+    border-radius: 10px;
+    position: absolute;
+    top: 30px;
+    height: 45%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -58,11 +97,32 @@
     padding-bottom: 1%;
 }
 
+.exercise-right-2 {
+    border: 5px solid #FFFF00;
+    border-radius: 10px;
+    height: 95%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 8%;
+
+    padding-bottom: 1%;
+}
+
 .right-speedometer {
     width: 180px;
     height: 225px;
     top: 2%;
     right: 15%;
+}
+
+.right-speedometer-2 {
+    width: 180px;
+    height: 225px;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    scale: 1.5;
 }
 
 .v-box {
@@ -124,6 +184,20 @@
     left: 80px;
 }
 
+.b-container-2{
+    /*scale: 1.2;*/
+    height: 100%;
+    width: 500px;
+    position: absolute;
+    background: url("../../assets/components/BikeModel.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    top: 530px;
+    right: 30px;
+    transform: rotateY(180deg);
+}
+
 .bike-handlebar{
     height: 100%;
     width: 450px;
@@ -134,6 +208,19 @@
 
     top: 40px;
     left: 75px;
+
+}
+
+.bike-handlebar-2{
+    height: 100%;
+    width: 500px;
+    position: absolute;
+    background: url("../../assets/components/BikeHandlebar.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    top: 540px;
+    left: 40px;
 
 }
 
@@ -149,6 +236,18 @@
     right: 350px;
 }
 
+.ex-bike-handlebar-2 {
+    height: 40%;
+    width: 250px;
+    position: absolute;
+    background: url("../../assets/components/ExBikeHandlebar.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    bottom: 0px;
+    right: 100px;
+}
+
 .e-container {
     height: 40%;
     width: 250px;
@@ -161,6 +260,19 @@
     right: 140px;
 }
 
+.e-container-2 {
+    height: 40%;
+    width: 240px;
+    position: absolute;
+    background: url("../../assets/components/ExBikeModel.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    bottom: 50px;
+    right: 470px;
+    transform: rotateY(180deg);
+}
+
 .center-box{
     border-radius: 10px;
     width: 100%;
@@ -168,7 +280,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
     justify-content: space-between;
 }
 
@@ -238,6 +349,35 @@
     background: #ffffff;
 }
 
+.check-button-2 {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    width: 50%;
+    height: 15%;
+    border-radius: 10px;
+
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5em;
+    line-height: 20px;
+    text-align: center;
+
+    color: #E6E6E6;
+    background: #68AE00;
+
+}
+
+.check-button-2:active {
+    color: #666666;
+    background: #ffffff;
+}
+
 .left-speedometer-handlebar {
     position: absolute;
     width: 100px;
@@ -246,10 +386,28 @@
     left: 250px;
 }
 
+.left-speedometer-handlebar-2 {
+    position: absolute;
+    width: 100px;
+    height: 125px;
+    top: 620px;
+    left: 235px;
+    scale: 1.4;
+}
+
 .right-speedometer-handlebar{
     position: absolute;
     width: 100px;
     height: 125px;
     top: 110px;
     right: 425px;
+}
+
+.right-speedometer-handlebar-2{
+    position: absolute;
+    width: 100px;
+    height: 125px;
+    bottom: 190px;
+    right: 175px;
+    scale: 1.2;
 }

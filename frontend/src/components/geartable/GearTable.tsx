@@ -24,6 +24,7 @@ enum HighlightType {
     SEMI_COLORED
 }
 
+// TODO: fix text color and width
 type CellData = {
     x: number,
     y: number,
@@ -160,7 +161,7 @@ export default class GearTable extends Component {
 
         let topgears = [
             <img src={gear44}/>,
-            <img src={gear34}/>,
+            <img src={gear34} style={{scale: "0.65"}}/>,
             <img src={gear24}/>,
         ].reverse()
 

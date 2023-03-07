@@ -203,85 +203,31 @@ export default class SceneComponent extends Component {
         return (
             this.props.level == Level.low_1_5 || Level.middle_6_8 ? // Это всё для маленьких
             <div className="page-container">
-                <div className="bicycle-left">
-                    <div className="bike-handlebar" />
-                    <div className="b-container" />
-                    <div className="v-box">
-                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.bicycleFlist}
-                                               y_label_name={""} result_label_name={""}
-                                               max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
-                                                   this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-                                               max_x={1.5} color={this.cyanColor}/>
-                            <div className="f-t-label" style={{color: this.cyanColor}}>
-                                <label style={{fontSize:"1.5em"}}>t</label>
-                                <label style={{fontSize: "1em"}}>сек</label>
-                            </div>
-                            <div className="f-f-label"  style={{color: this.cyanColor}}>
-                                <label style={{fontSize:"1.5em"}}>F</label>
-                                <label style={{fontSize:"1em"}}>сила</label>
-                            </div>
-                        </div>
+                <div className="bicycle-left-2">
+                    <div className="left-speedometer-2">
+                        <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
                     </div>
-                    <div className="left-speedometer-handlebar">
+                    <div className="bike-handlebar-2" />
+                    <div className="b-container-2" />
+                    <div className="left-speedometer-handlebar-2">
                         <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>
                     </div>
                 </div>
 
-                <div className="center">
-                    <div className="center-box" style={{height: "30%"}}>
-                        <div className="left-speedometer">
-                            <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
-                        </div>
-                        <div className="right-speedometer">
-                            <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
-                        </div>
-                    </div>
-
-                    <div className="center-box"  style={{height: "35%", flexDirection: "column"}}>
+                <div className="center-2">
+                    <div className="center-box"  style={{height: "85%", flexDirection: "column"}}>
                         <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
-                        <button className="check-button" onClick={this.startSimulation}>ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
-                    </div>
-
-                    <div className="v-box">
-                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.wList}
-                                               y_label_name={""} result_label_name={""}
-                                               max_y={2}
-                                               max_x={1.5} color={this.greenColor}/>
-                            <div className="f-t-label" style={{color: this.greenColor}}>
-                                <label style={{fontSize:"1.5em"}}>t</label>
-                                <label style={{fontSize: "1em"}}>сек</label>
-                            </div>
-                            <div className="f-f-label" style={{color: this.greenColor}}>
-                                <label style={{fontSize:"1.5em"}}>W</label>
-                                <label style={{fontSize:"1em"}}>обороты/сек</label>
-                            </div>
-                        </div>
+                        <button className="check-button-2" onClick={this.startSimulation}>ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
                     </div>
                 </div>
 
-                <div className="exercise-right">
-                    <div className="ex-bike-handlebar" />
-                    <div className="e-container"/>
-                    <div className="v-box">
-                        <div className="f-graphic" style={{background: this.graphicsBackground}}>
-                            <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
-                                               y_label_name={""} result_label_name={""}
-                                               max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
-                                                   this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
-                                               max_x={1.5} color={this.yellowColor}/>
-                            <div className="f-t-label" style={{color: this.yellowColor}}>
-                                <label style={{fontSize:"1.5em"}}>t</label>
-                                <label style={{fontSize: "1em"}}>сек</label>
-                            </div>
-                            <div className="f-f-label" style={{color: this.yellowColor}}>
-                                <label style={{fontSize:"1.5em"}}>F</label>
-                                <label style={{fontSize:"1em"}}>сила</label>
-                            </div>
-                        </div>
+                <div className="exercise-right-2">
+                    <div className="right-speedometer-2">
+                        <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
                     </div>
-                    <div className="right-speedometer-handlebar">
+                    <div className="ex-bike-handlebar-2" />
+                    <div className="e-container-2"/>
+                    <div className="right-speedometer-handlebar-2">
                         <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={true}/>
                     </div>
                 </div>
@@ -291,7 +237,91 @@ export default class SceneComponent extends Component {
                 :
 
                 <>
-                {/*    А тут всё для взрослых*/}
+                    <div className="page-container">
+                        <div className="bicycle-left">
+                            <div className="bike-handlebar" />
+                            <div className="b-container" />
+                            <div className="v-box">
+                                <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                                    <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.bicycleFlist}
+                                                       y_label_name={""} result_label_name={""}
+                                                       max_y={this.state.bicycleFlist[this.state.bicycleFlist.length - 1] > 10 ?
+                                                           this.state.bicycleFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                                       max_x={1.5} color={this.cyanColor}/>
+                                    <div className="f-t-label" style={{color: this.cyanColor}}>
+                                        <label style={{fontSize:"1.5em"}}>t</label>
+                                        <label style={{fontSize: "1em"}}>сек</label>
+                                    </div>
+                                    <div className="f-f-label"  style={{color: this.cyanColor}}>
+                                        <label style={{fontSize:"1.5em"}}>F</label>
+                                        <label style={{fontSize:"1em"}}>сила</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="left-speedometer-handlebar">
+                                <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={true}/>
+                            </div>
+                        </div>
+
+                        <div className="center">
+                            <div className="center-box" style={{height: "30%"}}>
+                                <div className="left-speedometer">
+                                    <BikeSpeedComponent color={this.cyanColor} left={"05"} right={"02"} speed={175.87} distance={198} isBlur={false}/>
+                                </div>
+                                <div className="right-speedometer">
+                                    <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={false}/>
+                                </div>
+                            </div>
+
+                            <div className="center-box"  style={{height: "40%", flexDirection: "column"}}>
+                                <GearTable key={sum} tableData={this.state.tableData} onChange={this.tableChange}/>
+                                <button className="check-button" onClick={this.startSimulation}>ПРОВЕРИТЬ   РЕЗУЛЬТАТ</button>
+                            </div>
+
+                            <div className="v-box">
+                                <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                                    <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.wList}
+                                                       y_label_name={""} result_label_name={""}
+                                                       max_y={2}
+                                                       max_x={1.5} color={this.greenColor}/>
+                                    <div className="f-t-label" style={{color: this.greenColor}}>
+                                        <label style={{fontSize:"1.5em"}}>t</label>
+                                        <label style={{fontSize: "1em"}}>сек</label>
+                                    </div>
+                                    <div className="f-f-label" style={{color: this.greenColor}}>
+                                        <label style={{fontSize:"1.5em"}}>W</label>
+                                        <label style={{fontSize:"1em"}}>обороты/сек</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="exercise-right">
+                            <div className="ex-bike-handlebar" />
+                            <div className="e-container"/>
+                            <div className="v-box">
+                                <div className="f-graphic" style={{background: this.graphicsBackground}}>
+                                    <GraphicsComponent x={this.state.Tlist} x_label_name={""} y={this.state.exerciseFlist}
+                                                       y_label_name={""} result_label_name={""}
+                                                       max_y={this.state.exerciseFlist[this.state.exerciseFlist.length - 1] > 10 ?
+                                                           this.state.exerciseFlist[this.state.bicycleFlist.length - 1] + 5 : 10}
+                                                       max_x={1.5} color={this.yellowColor}/>
+                                    <div className="f-t-label" style={{color: this.yellowColor}}>
+                                        <label style={{fontSize:"1.5em"}}>t</label>
+                                        <label style={{fontSize: "1em"}}>сек</label>
+                                    </div>
+                                    <div className="f-f-label" style={{color: this.yellowColor}}>
+                                        <label style={{fontSize:"1.5em"}}>F</label>
+                                        <label style={{fontSize:"1em"}}>сила</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="right-speedometer-handlebar">
+                                <ExBikeSpeedComponent color={this.yellowColor} time={"00:05"} power={0.3} speed={175.87} distance={198} isBlur={true}/>
+                            </div>
+                        </div>
+
+                    </div>
                 </>
         );
     }
