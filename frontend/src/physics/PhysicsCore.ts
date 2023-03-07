@@ -4,12 +4,13 @@ import w1 from "./functions/w1(t)";
 export default class PhysicsCore{
     private inputModel: InputModel;
 
-    private selectedNi: number;
-    private selectedNiIndex: number;
-    private t: number;
-    private u: number;
-    private subscriber?: (W: number, V: number, F: number, t: number) => void;
-    private exerciseSubscriber?: (W: number, V: number, F: number, power: number, t: number) => void;
+    private selectedNi: number
+    private selectedNiIndex: number
+    private t: number
+    private u: number
+    private subscriber?: (W: number, V: number, F: number, t: number) => void
+    private exerciseSubscriber?: (W: number, V: number, F: number, power: number, t: number) => void
+    private speedChangeSubscriber?: (curSpeed: number) => void
 
     private intervalId: ReturnType<typeof setInterval> | undefined;
 
@@ -63,6 +64,9 @@ export default class PhysicsCore{
             if (this.t > niMapping[niMapping.length-1]){
                 niMapping.pop();
                 this.selectedNiIndex++;
+                if (this.speedChangeSubscriber){
+                    this.speedChangeSubscriber(this.selectedNiIndex)
+                }
                 this.selectedNi = this.inputModel.ni[this.selectedNiIndex];
             }
 
@@ -95,6 +99,10 @@ export default class PhysicsCore{
             throw new Error("only one type of subscribers can be present")
         }
         this.exerciseSubscriber = exerciseSubscriber
+    }
+
+    public subscribeToSpeedChange(sub: (newSpeed: number) => void){
+        this.speedChangeSubscriber = sub
     }
 
     public stop(): void {
