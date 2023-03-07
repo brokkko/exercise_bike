@@ -10,7 +10,6 @@ import gear34 from "../../assets/gears/Vector34.svg"
 import gear44 from "../../assets/gears/Vector44.svg"
 
 
-
 import "./GearTable.css";
 
 type Props = {
@@ -212,7 +211,7 @@ export default class GearTable extends Component {
                     </div>
                 </div>
 
-                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 45px)`}} className="table">
+                <div style={{gridTemplateColumns: `repeat(${this.props.tableData[0].length}, 55px)`}} className="table">
                     {cells}
                 </div>
             </div>
