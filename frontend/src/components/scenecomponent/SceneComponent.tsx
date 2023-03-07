@@ -108,14 +108,8 @@ export default class SceneComponent extends Component {
         let choosenExGears = []
 
         for (let i = 0; i < gears.length; i++) {
-            choosenExGears.push(gears[speedIndexes[i]])
+            choosenExGears.push(exgears[speedIndexes[i]])
         }
-
-
-
-
-
-
 
         if (this.bicyclePhysics) {
             this.bicyclePhysics.stop()
