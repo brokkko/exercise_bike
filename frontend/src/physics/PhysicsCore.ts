@@ -1,6 +1,8 @@
 import InputModel from "./InputModel";
 import w1 from "./functions/w1(t)";
 
+const stepSize = 0.01;
+
 export default class PhysicsCore{
     private inputModel: InputModel;
 
@@ -8,9 +10,11 @@ export default class PhysicsCore{
     private selectedNiIndex: number
     private t: number
     private u: number
-    private subscriber?: (W: number, V: number, F: number, t: number) => void
-    private exerciseSubscriber?: (W: number, V: number, F: number, power: number, t: number) => void
+    private distance: number
+    private subscriber?: (W: number, V: number, F: number,distance: number ,t: number) => void
+    private exerciseSubscriber?: (W: number, V: number, F: number, power: number, distance: number, t: number) => void
     private speedChangeSubscriber?: (curSpeed: number) => void
+    private onSimEnd?: () => void
 
     private intervalId: ReturnType<typeof setInterval> | undefined;
 
@@ -22,8 +26,7 @@ export default class PhysicsCore{
             ni: gears, // gears
             w: w1
         };
-
-        this.subscriber = (v1,v2,v3,v4) => {};
+        this.distance = 0;
         this.t = 0;
         this.u = this.calculateU()
         this.selectedNi = this.inputModel.ni[0];
@@ -48,7 +51,7 @@ export default class PhysicsCore{
     }
 
     private step(): void {
-        this.t += 0.02;
+        this.t += stepSize;
         this.update();
     }
 
@@ -61,6 +64,10 @@ export default class PhysicsCore{
 
         this.intervalId = setInterval(() => {
 
+            if (this.speedChangeSubscriber){
+                this.speedChangeSubscriber(this.selectedNiIndex)
+            }
+
             if (this.t > niMapping[niMapping.length-1]){
                 niMapping.pop();
                 this.selectedNiIndex++;
@@ -71,30 +78,37 @@ export default class PhysicsCore{
             }
 
             if (this.t > tLimit){
+                    if (this.onSimEnd){
+                        this.onSimEnd()
+                    }
                   this.stop();
                   return;
             }
 
             this.step();
 
+
+
             if (this.subscriber){
-                this.subscriber(this.getW(), this.getV(), this.getF(), this.getT())
+                this.subscriber(this.getW(), this.getV(), this.getF(), this.distance, this.getT())
+                this.distance += this.getV() * stepSize;
             }
             if (this.exerciseSubscriber){
-                this.exerciseSubscriber(this.getW(), this.getVex(), this.getFex(), this.getPowerEx(), this.getT())
+                this.exerciseSubscriber(this.getW(), this.getVex(), this.getFex(), this.getPowerEx(), this.distance, this.getT())
+                this.distance += this.getVex() * stepSize;
             }
 
         }, 200)
     }
 
-    public subscribe(subscriber: (W: number, V: number, F: number, t: number) => void): void {
+    public subscribe(subscriber: (W: number, V: number, F: number, dist: number, t: number) => void): void {
         if (this.exerciseSubscriber){
             throw new Error("only one type of subscribers can be present")
         }
         this.subscriber = subscriber;
     }
 
-    public subscribeAsEx(exerciseSubscriber: (W: number, V: number, F: number, power: number, t: number) => void){
+    public subscribeAsEx(exerciseSubscriber: (W: number, V: number, F: number, power: number, dist: number, t: number) => void){
         if (this.subscriber){
             throw new Error("only one type of subscribers can be present")
         }
@@ -103,6 +117,10 @@ export default class PhysicsCore{
 
     public subscribeToSpeedChange(sub: (newSpeed: number) => void){
         this.speedChangeSubscriber = sub
+    }
+
+    public subscribeToSimEnd(sub: () => void){
+        this.onSimEnd = sub
     }
 
     public stop(): void {

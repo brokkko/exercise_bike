@@ -25,29 +25,29 @@ export default class BikeSpeedComponent extends Component {
                         <div className="bike-derailleurs bike-left-box">
                             <text className="inbox-title" >GEARS</text>
                             <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px", fontSize: "36px"}}>
-                                {/*  10 curr dist*/} 03
+                                {/*  10 curr dist*/} {this.props.left}
                                 <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>LEFT</text>
                             </section>
                         </div>
                         <div className="bike-derailleurs bike-right-box">
                             {/*<text className="inbox-title">RIGHT</text>*/}
                             <section style={{flexDirection:"column", height:"100%", gap: "8px", marginTop: "16px", fontSize: "36px"}}>
-                                {/*  10 curr gear x*/} 09
+                                {/*  10 curr gear x*/} {this.props.right}
                                 <text style={{fontSize: "18px", alignSelf: "flex-end", marginRight: "35px"}}>RIGHT</text>
                             </section>
                         </div>
                     </div>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">speed</text>
-                        <section style={{fontSize: "55px"}}>
-                            {/*  10 curr speed*/} 10
+                        <section style={{fontSize: "42px"}}>
+                            {/*  10 curr speed*/} {this.props.speed}
                             <text>KM/H</text>
                         </section>
                     </div>
                     <div className={this.props.isBlur ? "bike-speed-box blur-mode" : "bike-speed-box"}>
                         <text className="inbox-title">DISTANCE</text>
-                        <section style={{fontSize: "50px", marginTop: "20px"}}>
-                            {/*  10 curr dist*/} 10
+                        <section style={{fontSize: "42px", marginTop: "20px"}}>
+                            {/*  10 curr dist*/} {this.props.distance}
                             <text>KM</text>
                         </section>
                     </div>

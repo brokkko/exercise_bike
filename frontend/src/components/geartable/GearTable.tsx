@@ -15,6 +15,9 @@ import "./GearTable.css";
 type Props = {
     tableData: number[][]
     onChange: (arr: number[][]) => void
+    selectedSpeedX?: number
+    selectedSpeedY?: number
+    lockSpeed: boolean
 }
 
 enum HighlightType {
@@ -166,7 +169,7 @@ export default class GearTable extends Component {
 
         let topgearsN = [
             24, 34 , 44
-        ]
+        ].reverse()
 
         let leftgearsN = [
             12,14,16,18,21,24
@@ -179,7 +182,7 @@ export default class GearTable extends Component {
             <img src={gear18}/>,
             <img src={gear21}/>,
             <img src={gear24}/>,
-        ]
+        ].reverse()
 
         let topPanel = [];  // panels vise-versa
         for (let cell in this.state.cells) {
@@ -191,14 +194,24 @@ export default class GearTable extends Component {
             leftPanel.push(<div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell">{leftgears[+cell]}  <p style={{position: "absolute"}}> {leftgearsN[+cell]} </p></div>)
         }
 
-        for (let x in this.state.cells) {
-            for (let y in this.state.cells[x]) {
-                if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
-                    leftPanel[y] = <div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell highlighted-colored">{leftgears[+y]}  <p style={{position: "absolute"}}> {leftgearsN[+y]} </p></div>
-                    topPanel[x] = <div style={{transform: "scale(0.7)", position: "relative"}} className="top-panel-cell highlighted-colored">{topgears[+x]} <p style={{position: "absolute"}}> {topgearsN[+x]} </p></div>
+        let x = this.props.selectedSpeedX!;
+        let y = this.props.selectedSpeedY!;
+        if (this.props.lockSpeed){
+            leftPanel[y] = <div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell highlighted-colored">{leftgears[y]}  <p style={{position: "absolute"}}> {leftgearsN[y]} </p></div>
+            topPanel[x] = <div style={{transform: "scale(0.7)", position: "relative"}} className="top-panel-cell highlighted-colored">{topgears[x]} <p style={{position: "absolute"}}> {topgearsN[x]} </p></div>
+        }
+        else {
+            for (let x in this.state.cells) {
+                for (let y in this.state.cells[x]) {
+                    if (this.state.cells[x][y].highlighted == HighlightType.COLORED) {
+                        leftPanel[y] = <div style={{transform: "scale(0.7)", position: "relative"}} className="left-panel-cell highlighted-colored">{leftgears[+y]}  <p style={{position: "absolute"}}> {leftgearsN[+y]} </p></div>
+                        topPanel[x] = <div style={{transform: "scale(0.7)", position: "relative"}} className="top-panel-cell highlighted-colored">{topgears[+x]} <p style={{position: "absolute"}}> {topgearsN[+x]} </p></div>
+                    }
                 }
             }
         }
+
+
 
         return (
             <div style={{position: "relative", transform: "translateX(-24px)"}}>

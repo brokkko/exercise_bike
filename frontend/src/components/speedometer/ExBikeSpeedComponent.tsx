@@ -6,6 +6,7 @@ type SpeedometerProps = {
     power?: number,
     speed: number,
     distance?: number,
+    mode?: string,
     color: string,
     isBlur?: boolean
 }
@@ -26,7 +27,7 @@ export default class ExBikeSpeedComponent extends Component {
                             <div className={this.props.isBlur ? "ex-bike-speed-box-2 blur-mode" : "ex-bike-speed-box-2"} style={{maxHeight: "55px"}}>
                                 <text className="inbox-title" style={{fontSize: "20px"}}>MODE</text>
                                 <section style={{fontSize: "40px"}}>
-                                    <text style={{fontSize: "30px"}}>{this.props.speed - 174.87}</text>
+                                    <text style={{fontSize: "30px"}}>{this.props.mode}</text>
                                     {/*<text style={{fontSize: "20px"}}>KM/H</text>*/}
                                 </section>
                             </div>
